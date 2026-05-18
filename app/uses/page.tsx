@@ -2,10 +2,23 @@ import type { Metadata } from "next";
 import { Section } from "@/components/shared/Section";
 import { PageHero } from "@/components/shared/PageHero";
 import { Contact } from "@/components/home/Contact";
+import { siteConfig } from "@/lib/site";
+
+const usesTitle = `Stack & Tools — ${siteConfig.name}`;
+const usesDescription =
+  "The hardware, editor setup, frontend stack, testing tools, and cloud services Tarun Kushwaha relies on every day. Inspired by uses.tech.";
 
 export const metadata: Metadata = {
-  title: "Uses",
-  description: "Hardware, software, and dev tools I rely on every day.",
+  title: "Stack & Tools",
+  description: usesDescription,
+  alternates: { canonical: "/uses" },
+  openGraph: {
+    type: "website",
+    url: `${siteConfig.url}/uses`,
+    title: usesTitle,
+    description: usesDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 const groups = [
@@ -92,7 +105,7 @@ export default function UsesPage() {
         }
       />
 
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {groups.map((g) => (
             <div

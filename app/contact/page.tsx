@@ -1,15 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { FileDown, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { FileDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Section } from "@/components/shared/Section";
 import { PageHero } from "@/components/shared/PageHero";
 import { siteConfig } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 
+const contactTitle = `Contact — ${siteConfig.name}`;
+const contactDescription =
+  "Get in touch with Tarun Kushwaha — Senior React / Next.js engineer. Open to full-time roles and freelance engagements. Usually reply within a day.";
+
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Get in touch with Tarun Kushwaha — senior React.js / Next.js engineer.",
+  description: contactDescription,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    type: "website",
+    url: `${siteConfig.url}/contact`,
+    title: contactTitle,
+    description: contactDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 export default function ContactPage() {
@@ -29,7 +40,7 @@ export default function ContactPage() {
         }
       />
 
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <ContactForm />
 
@@ -70,14 +81,6 @@ export default function ContactPage() {
                     /in/{siteConfig.links.linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//, "").replace(/\/$/, "")}
                   </Link>
                 </ContactRow>
-                <ContactRow icon={<Phone size={16} />} label="Phone">
-                  <Link
-                    href={`tel:${siteConfig.phone}`}
-                    className="text-foreground hover:underline underline-offset-4"
-                  >
-                    {siteConfig.phone}
-                  </Link>
-                </ContactRow>
                 <ContactRow icon={<FileDown size={16} />} label="Resume">
                   <a
                     href={siteConfig.links.resume}
@@ -94,18 +97,38 @@ export default function ContactPage() {
 
             <div className="rounded-2xl border border-foreground/[0.08] bg-white paper p-7">
               <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Currently
+                Currently open to
               </h2>
-              <p className="text-sm text-foreground/85">
-                Booking freelance full-stack work — Next.js, Node, Mongo,
-                Docker. Audits, MVPs, and pair consulting. Async, remote,
-                time-zone-friendly.{" "}
-                <Link
-                  href="/services"
-                  className="text-foreground underline-offset-4 hover:underline"
-                >
-                  See engagement types →
-                </Link>
+              <ul className="space-y-3 text-sm text-foreground/85">
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[--color-brand-lime]" />
+                  <span>
+                    <span className="font-medium text-foreground">
+                      Full-time roles
+                    </span>{" "}
+                    — Senior / Lead frontend or full-stack, remote or hybrid.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[--color-brand-orange]" />
+                  <span>
+                    <span className="font-medium text-foreground">
+                      Freelance engagements
+                    </span>{" "}
+                    — Next.js, Node, Mongo, Docker. Audits, MVPs, pair
+                    consulting.{" "}
+                    <Link
+                      href="/services"
+                      className="text-foreground underline-offset-4 hover:underline"
+                    >
+                      See engagement types →
+                    </Link>
+                  </span>
+                </li>
+              </ul>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Drop a message — I&apos;ll share my phone number in the reply
+                so we can jump on a quick call.
               </p>
             </div>
           </aside>

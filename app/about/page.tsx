@@ -6,9 +6,20 @@ import { Experience } from "@/components/home/Experience";
 import { Stack } from "@/components/home/Stack";
 import { Contact } from "@/components/home/Contact";
 
+const aboutTitle = `About — ${siteConfig.name}`;
+const aboutDescription = `${siteConfig.name} is a Team Lead and Senior React / Next.js engineer based in Kanpur, India. 4+ years shipping production React at Fluid AI. Principles, off-hours, and how I think about the work.`;
+
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${siteConfig.name} — ${siteConfig.role}.`,
+  description: aboutDescription,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    type: "profile",
+    url: `${siteConfig.url}/about`,
+    title: aboutTitle,
+    description: aboutDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 export default function AboutPage() {

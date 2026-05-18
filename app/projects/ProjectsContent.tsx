@@ -154,7 +154,7 @@ function ProjectsHero({
             <AnimatedText text="Things I've" />
           </span>
           <span className="relative mt-2 block md:mt-3">
-            <span className="relative z-10 font-display italic gradient-text">
+            <span className="relative z-10 inline-block pr-[0.12em] font-display italic gradient-text">
               <Typewriter
                 words={[
                   "built.",

@@ -78,10 +78,10 @@ export function PageHero({
             <AnimatedText text={prefix} />
           </span>
           <span className="relative mt-2 inline-block md:mt-3">
-            <span className="relative z-10 font-display italic gradient-text">
+            <span className="relative z-10 inline-block pr-[0.12em] font-display italic gradient-text">
               {highlight}
             </span>
-            <Sparkles className="-inset-y-6 -inset-x-4" count={10} />
+            <Sparkles className="-inset-y-6 -inset-x-4" count={4} />
             <svg
               aria-hidden
               viewBox="0 0 220 14"

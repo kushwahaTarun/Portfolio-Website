@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowDown, Github, Linkedin, Sparkles as SparklesIcon, Zap } from "lucide-react";
+import { ArrowDown, FileDown, Github, Linkedin, Sparkles as SparklesIcon, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/site";
 import { AnimatedText } from "@/components/shared/AnimatedText";
@@ -18,12 +18,24 @@ export function Hero() {
       <div className="container-px relative mx-auto grid min-h-[100svh] max-w-[1400px] grid-cols-1 items-center gap-12 pb-24 pt-16 md:pt-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:pb-32 lg:pt-24">
           {/* Left: Text content */}
           <div>
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/10 bg-white px-3 py-1.5 text-xs font-medium uppercase tracking-[0.16em] text-foreground sticker"
+            >
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[--color-brand-lime] opacity-70" />
+                <span className="relative inline-flex size-2 rounded-full bg-[--color-brand-lime]" />
+              </span>
+              Open to full-time roles &amp; freelance
+            </motion.div>
             <h1 className="text-balance text-4xl font-semibold leading-[1] tracking-tight md:text-6xl lg:text-[5.5rem]">
               <span className="block">
                 <AnimatedText text="Hey, I'm" />
               </span>
               <span className="relative inline-block">
-                <span className="relative z-10 font-display italic gradient-text">
+                <span className="relative z-10 inline-block pr-[0.12em] font-display italic gradient-text">
                   <AnimatedText text="Tarun." delay={0.15} />
                 </span>
                 <svg
@@ -65,10 +77,10 @@ export function Hero() {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="mt-10 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              Frontend engineer based in{" "}
-              <HighlightWord>Kanpur, India</HighlightWord>. Days writing React
-              and Next.js, nights tinkering with the rest of the MERN stack,
-              weekends chasing whatever new AI API just shipped.
+              Team Lead &amp; Senior React / Next.js engineer based in{" "}
+              <HighlightWord>Kanpur, India</HighlightWord>. 4 years shipping
+              production React at Fluid AI. Open to full-time roles and
+              freelance engagements — say hi if you&apos;re hiring or building.
             </motion.p>
 
             <motion.div
@@ -96,6 +108,18 @@ export function Hero() {
                   Say hello
                 </Link>
               </MagneticButton>
+              <MagneticButton>
+                <a
+                  href={siteConfig.links.resume}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-foreground/20 bg-transparent px-6 text-sm font-medium text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                >
+                  <FileDown size={14} />
+                  Resume
+                </a>
+              </MagneticButton>
               <div className="ml-1 flex items-center gap-1.5">
                 <SocialPill href={siteConfig.links.github} label="GitHub">
                   <Github size={14} />
@@ -110,7 +134,7 @@ export function Hero() {
           {/* Right: Visual stack */}
           <div className="relative hidden h-[520px] lg:block">
             <FloatingCard
-              className="absolute right-0 top-0 w-[280px] rotate-[3deg] paper"
+              className="absolute right-0 top-4 w-[280px] rotate-[3deg] paper"
               delay={0.4}
             >
               <div className="flex items-center gap-2 border-b border-foreground/[0.08] px-4 py-2 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
@@ -122,8 +146,7 @@ export function Hero() {
                   Interactive Avatar
                 </div>
                 <p className="mt-2 text-xs leading-snug text-muted-foreground">
-                  A real-time AI avatar app on Next.js + HeyGen. Talks back.
-                  Mostly works.
+                  A real-time AI avatar app on Next.js + HeyGen.
                 </p>
                 <div className="mt-3 flex flex-wrap gap-1">
                   {["Next.js", "HeyGen", "Tailwind"].map((t) => (
@@ -139,7 +162,7 @@ export function Hero() {
             </FloatingCard>
 
             <FloatingCard
-              className="absolute left-2 top-[170px] w-[220px] -rotate-[4deg] paper"
+              className="absolute left-2 top-[200px] w-[220px] -rotate-[4deg] paper"
               delay={0.6}
             >
               <div className="p-4">
@@ -171,46 +194,18 @@ export function Hero() {
             </FloatingCard>
 
             <FloatingCard
-              className="absolute right-8 top-[290px] w-[180px] rotate-[6deg] sticker"
+              className="absolute right-6 top-[370px] w-[200px] rotate-[5deg] sticker"
               delay={0.8}
               style={{ background: "var(--color-brand-orange)" }}
             >
               <div className="relative p-4 text-white">
-                <Sparkles className="inset-0" count={5} colors={["#ffffff"]} />
+                <Sparkles className="inset-0" count={3} colors={["#ffffff"]} />
                 <div className="text-[10px] uppercase tracking-[0.18em] opacity-80">
                   Years writing React
                 </div>
                 <div className="mt-1 font-display text-5xl italic">4+</div>
                 <div className="mt-1 text-[11px] opacity-80">
-                  &amp; still finding new ways to use useEffect wrong
-                </div>
-              </div>
-            </FloatingCard>
-
-            <FloatingCard
-              className="absolute left-0 top-[380px] w-[240px] rotate-[-2deg] paper"
-              delay={1.0}
-            >
-              <div className="p-4">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-                  Toolkit
-                </div>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {[
-                    { t: "React", c: "bg-[#61dafb]/15 text-[#0078a4]" },
-                    { t: "Next.js", c: "bg-foreground/[0.08] text-foreground" },
-                    { t: "TypeScript", c: "bg-[#3178c6]/15 text-[#3178c6]" },
-                    { t: "Tailwind", c: "bg-[#06b6d4]/15 text-[#0e7490]" },
-                    { t: "Node", c: "bg-[#84cc16]/20 text-[#3f6212]" },
-                    { t: "Mongo", c: "bg-[#10b981]/20 text-[#065f46]" },
-                  ].map(({ t, c }) => (
-                    <span
-                      key={t}
-                      className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${c}`}
-                    >
-                      {t}
-                    </span>
-                  ))}
+                  &amp; still excited about every release
                 </div>
               </div>
             </FloatingCard>

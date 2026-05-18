@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/shared/CustomCursor";
 import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { CommandPalette } from "@/components/shared/CommandPalette";
+import { VoiceAssistant } from "@/components/shared/VoiceAssistant";
 import { siteConfig } from "@/lib/site";
 
 const sans = Inter({
@@ -43,6 +44,9 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Tarun Kushwaha",
     "Senior React Developer",
@@ -61,12 +65,6 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — ${siteConfig.role}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.role}`,
-    description: siteConfig.description,
-    creator: "@",
   },
   robots: {
     index: true,
@@ -98,6 +96,7 @@ export default function RootLayout({
           <Header />
           <main className="relative">{children}</main>
           <Footer />
+          <VoiceAssistant />
         </Providers>
       </body>
     </html>

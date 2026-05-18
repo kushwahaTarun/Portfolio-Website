@@ -105,7 +105,7 @@ export function Stack() {
         eyebrow="My toolkit"
         accent="orange"
         title="What I usually reach for."
-        description="Four shelves of the workshop. Hover any chip — they have opinions about themselves."
+        description="Four areas I keep returning to. Hover any chip for a bit of context."
       />
 
       <div
