@@ -15,9 +15,75 @@ import { Contact } from "@/components/home/Contact";
 import { siteConfig } from "@/lib/site";
 import { FaqAccordion } from "./FaqAccordion";
 
+const servicesTitle = `Services — Work with ${siteConfig.name}`;
+const servicesDescription = `Freelance full-stack engagements with ${siteConfig.name} — Next.js front-ends, Node APIs, MongoDB / Firebase, Docker deploys. Audits, MVPs, and pair consulting.`;
+
 export const metadata: Metadata = {
   title: "Services — Work with me",
-  description: `Freelance full-stack engagements with ${siteConfig.name} — Next.js front-ends, Node APIs, MongoDB / Firebase, Docker deploys. Audits, MVPs, and pair consulting.`,
+  description: servicesDescription,
+  alternates: { canonical: "/services" },
+  openGraph: {
+    type: "website",
+    url: `${siteConfig.url}/services`,
+    title: servicesTitle,
+    description: servicesDescription,
+    siteName: siteConfig.name,
+  },
+};
+
+const servicesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: `${siteConfig.name} — Freelance Engineering`,
+  url: `${siteConfig.url}/services`,
+  description: servicesDescription,
+  areaServed: "Worldwide",
+  provider: {
+    "@type": "Person",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    jobTitle: siteConfig.role,
+    email: `mailto:${siteConfig.email}`,
+    sameAs: [siteConfig.links.github, siteConfig.links.linkedin],
+  },
+  serviceType: [
+    "Full-stack performance audit",
+    "Full-stack MVP / new build",
+    "Pair consulting & code review",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Engagement types",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Full-stack performance audit",
+          description:
+            "1–2 week fixed-scope audit across Next.js, Node, and MongoDB with a prioritized fix list and Loom walkthrough.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Full-stack MVP / new build",
+          description:
+            "Idea to live URL — Next.js frontend, Node API, MongoDB / Firebase, Docker deploy.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Pair consulting & code review",
+          description:
+            "Async or scheduled pairing for senior frontend / full-stack guidance, architecture decisions, and code review.",
+        },
+      },
+    ],
+  },
 };
 
 type Service = {
@@ -167,7 +233,7 @@ export default function ServicesPage() {
       </PageHero>
 
       {/* Trust strip */}
-      <Section className="py-8 md:py-12">
+      <Section className="py-12 md:py-16">
         <div className="grid gap-3 rounded-3xl border border-foreground/[0.08] bg-white paper p-6 sm:grid-cols-2 md:grid-cols-4 md:p-8">
           <TrustStat value="4+" label="Years writing React" />
           <TrustStat value="50+" label="Enterprise tenants shipped" />
@@ -177,7 +243,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Services */}
-      <Section id="services" className="py-12 md:py-20">
+      <Section id="services" className="py-16 md:py-28">
         <SectionHeading
           eyebrow="Engagement types"
           accent="orange"
@@ -193,7 +259,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Ideal client / not a fit */}
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <SectionHeading
           eyebrow="Honest fit check"
           accent="cyan"
@@ -218,7 +284,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* Process */}
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <SectionHeading
           eyebrow="How it works"
           accent="indigo"
@@ -247,7 +313,7 @@ export default function ServicesPage() {
       </Section>
 
       {/* FAQ */}
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <SectionHeading
           eyebrow="FAQ"
           accent="pink"

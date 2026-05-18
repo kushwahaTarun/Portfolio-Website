@@ -2,10 +2,23 @@ import type { Metadata } from "next";
 import { Section } from "@/components/shared/Section";
 import { PageHero } from "@/components/shared/PageHero";
 import { Contact } from "@/components/home/Contact";
+import { siteConfig } from "@/lib/site";
+
+const nowTitle = `Now — ${siteConfig.name}`;
+const nowDescription =
+  "What Tarun Kushwaha is focused on right now — current work at Fluid AI, side projects, what I'm learning, and what I'm open to. Inspired by Derek Sivers' /now page.";
 
 export const metadata: Metadata = {
   title: "Now",
-  description: "What I'm focused on right now.",
+  description: nowDescription,
+  alternates: { canonical: "/now" },
+  openGraph: {
+    type: "website",
+    url: `${siteConfig.url}/now`,
+    title: nowTitle,
+    description: nowDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 const now = [
@@ -81,7 +94,7 @@ export default function NowPage() {
         }
       />
 
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <div className="grid gap-8 md:grid-cols-2">
           {now.map((block) => (
             <div
