@@ -25,6 +25,7 @@ import { TiltCard } from "@/components/ui/tilt-card";
 import { BorderBeam } from "@/components/ui/border-beam";
 import { BrowserFrame } from "@/components/ui/browser-frame";
 import { MagneticButton } from "@/components/shared/MagneticButton";
+import { Contact } from "@/components/home/Contact";
 import { projects, type Project } from "@/lib/data/projects";
 import { cn } from "@/lib/utils";
 
@@ -87,9 +88,9 @@ export function ProjectsContent() {
             Nothing here yet. Check back soon.
           </div>
         )}
-
-        <BottomCTA />
       </Section>
+
+      <Contact />
     </>
   );
 }
@@ -1220,35 +1221,3 @@ function GenericPreview({ project }: { project: Project }) {
   );
 }
 
-function BottomCTA() {
-  return (
-    <div className="mt-16 overflow-hidden rounded-3xl border border-foreground/[0.08] bg-white p-8 md:p-12">
-      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-        <div>
-          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <SparklesIcon size={11} className="text-[--color-brand-orange]" />
-            More on the way
-          </div>
-          <h3 className="mt-3 text-balance text-2xl font-semibold tracking-tight md:text-3xl">
-            Got something you&apos;d like to{" "}
-            <span className="gradient-text font-display italic">build together</span>?
-          </h3>
-          <p className="mt-2 max-w-xl text-sm text-muted-foreground md:text-base">
-            I&apos;m always up for an interesting build — drop a note and
-            let&apos;s talk shape.
-          </p>
-        </div>
-        <Link
-          href="/contact"
-          className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
-        >
-          Start a conversation
-          <ArrowUpRight
-            size={16}
-            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
-        </Link>
-      </div>
-    </div>
-  );
-}

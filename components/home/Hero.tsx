@@ -7,7 +7,6 @@ import { siteConfig } from "@/lib/site";
 import { AnimatedText } from "@/components/shared/AnimatedText";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { Typewriter } from "@/components/ui/typewriter";
-import { Spotlight } from "@/components/ui/spotlight";
 import { Sparkles } from "@/components/ui/sparkles";
 import { MovingBorder } from "@/components/ui/moving-border";
 
@@ -16,8 +15,7 @@ export function Hero() {
     <section className="relative min-h-[100svh] w-full overflow-hidden">
       <HeroDecor />
 
-      <Spotlight className="block">
-        <div className="container-px relative mx-auto grid min-h-[100svh] max-w-[1400px] grid-cols-1 items-center gap-12 pb-24 pt-16 md:pt-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:pb-32 lg:pt-24">
+      <div className="container-px relative mx-auto grid min-h-[100svh] max-w-[1400px] grid-cols-1 items-center gap-12 pb-24 pt-16 md:pt-20 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:pb-32 lg:pt-24">
           {/* Left: Text content */}
           <div>
             <h1 className="text-balance text-4xl font-semibold leading-[1] tracking-tight md:text-6xl lg:text-[5.5rem]">
@@ -28,7 +26,6 @@ export function Hero() {
                 <span className="relative z-10 font-display italic gradient-text">
                   <AnimatedText text="Tarun." delay={0.15} />
                 </span>
-                <Sparkles className="-inset-y-8 -inset-x-4" count={10} />
                 <svg
                   aria-hidden
                   viewBox="0 0 220 14"
@@ -152,14 +149,13 @@ export function Hero() {
                 <div className="mt-2 font-display text-lg italic text-foreground">
                   lo-fi + Hindi indie
                 </div>
-                <div className="mt-3 flex items-center gap-1">
+                <div className="mt-3 flex h-4 items-end gap-1">
                   {[1, 2, 3, 4, 5].map((i) => (
                     <motion.span
                       key={i}
                       className="block w-1 rounded-full bg-[--color-brand-orange]"
-                      animate={{
-                        height: ["6px", "14px", "8px", "16px", "6px"],
-                      }}
+                      style={{ height: "100%", transformOrigin: "bottom" }}
+                      animate={{ scaleY: [0.4, 1, 0.5, 1, 0.4] }}
                       transition={{
                         duration: 1.2 + i * 0.15,
                         repeat: Infinity,
@@ -220,7 +216,6 @@ export function Hero() {
             </FloatingCard>
           </div>
         </div>
-      </Spotlight>
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -291,28 +286,6 @@ function HeroDecor() {
       <div className="absolute -right-24 top-60 size-[420px] rounded-full bg-[radial-gradient(circle,rgba(8,145,178,0.16),transparent_60%)]" />
       <div className="absolute bottom-0 left-1/3 size-[380px] rounded-full bg-[radial-gradient(circle,rgba(101,163,13,0.14),transparent_60%)]" />
       <div className="absolute inset-0 dot-pattern mask-radial-fade opacity-50" />
-
-      {/* Animated floating shapes */}
-      <motion.div
-        className="absolute left-[8%] top-[18%] hidden h-3 w-3 rounded-full bg-[--color-brand-orange] md:block"
-        animate={{ y: [0, -14, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute right-[12%] top-[24%] hidden h-2 w-2 rotate-45 bg-[--color-brand-indigo] md:block"
-        animate={{ rotate: [45, 405] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="absolute left-[14%] bottom-[22%] hidden h-4 w-4 rounded-sm bg-[--color-brand-cyan] md:block"
-        animate={{ y: [0, 12, 0], rotate: [0, 8, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute right-[28%] bottom-[14%] hidden h-2 w-2 rounded-full bg-[--color-brand-pink] md:block"
-        animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
     </div>
   );
 }

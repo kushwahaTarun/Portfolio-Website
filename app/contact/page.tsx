@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { FileDown, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import { Section } from "@/components/shared/Section";
-import { GradientOrbs } from "@/components/shared/GradientOrbs";
+import { PageHero } from "@/components/shared/PageHero";
 import { siteConfig } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 
@@ -15,22 +15,19 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
-        <GradientOrbs />
-        <div className="container-px mx-auto max-w-[1400px]">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            / Contact
-          </span>
-          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-            Let&apos;s <span className="gradient-text">talk</span>.
-          </h1>
-          <p className="mt-8 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
-            A new role, a freelance build, a question about React, or just a hello
-            — I read every message and usually reply within a day or two. No
-            template, no sales pitch.
+      <PageHero
+        eyebrow="Contact"
+        prefix="Let's"
+        highlight="talk."
+        underlineWidth="92%"
+        description={
+          <p>
+            A new role, a freelance build, a question about React, or just a
+            hello — I read every message and usually reply within a day or
+            two. No template, no sales pitch.
           </p>
-        </div>
-      </section>
+        }
+      />
 
       <Section className="py-12 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
@@ -60,7 +57,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:underline underline-offset-4"
                   >
-                    @kushwahatarun9
+                    @{siteConfig.links.github.replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "")}
                   </Link>
                 </ContactRow>
                 <ContactRow icon={<Linkedin size={16} />} label="LinkedIn">
@@ -70,7 +67,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:underline underline-offset-4"
                   >
-                    /in/tarun-kushwaha-react
+                    /in/{siteConfig.links.linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//, "").replace(/\/$/, "")}
                   </Link>
                 </ContactRow>
                 <ContactRow icon={<Phone size={16} />} label="Phone">
@@ -81,6 +78,17 @@ export default function ContactPage() {
                     {siteConfig.phone}
                   </Link>
                 </ContactRow>
+                <ContactRow icon={<FileDown size={16} />} label="Resume">
+                  <a
+                    href={siteConfig.links.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                    className="text-foreground hover:underline underline-offset-4"
+                  >
+                    Download PDF
+                  </a>
+                </ContactRow>
               </ul>
             </div>
 
@@ -89,8 +97,15 @@ export default function ContactPage() {
                 Currently
               </h2>
               <p className="text-sm text-foreground/85">
-                Open to interesting frontend or full-stack work. Comfortable with
-                async, remote, and time-zone-friendly teams.
+                Booking freelance full-stack work — Next.js, Node, Mongo,
+                Docker. Audits, MVPs, and pair consulting. Async, remote,
+                time-zone-friendly.{" "}
+                <Link
+                  href="/services"
+                  className="text-foreground underline-offset-4 hover:underline"
+                >
+                  See engagement types →
+                </Link>
               </p>
             </div>
           </aside>

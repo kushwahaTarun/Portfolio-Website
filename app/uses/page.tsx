@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/shared/Section";
-import { GradientOrbs } from "@/components/shared/GradientOrbs";
+import { PageHero } from "@/components/shared/PageHero";
+import { Contact } from "@/components/home/Contact";
 
 export const metadata: Metadata = {
   title: "Uses",
@@ -69,16 +70,13 @@ const groups = [
 export default function UsesPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
-        <GradientOrbs />
-        <div className="container-px mx-auto max-w-[1400px]">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            / Uses
-          </span>
-          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-            The <span className="gradient-text">tools</span> I reach for.
-          </h1>
-          <p className="mt-8 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+      <PageHero
+        eyebrow="Uses"
+        prefix="The tools I"
+        highlight="reach for."
+        underlineWidth="72%"
+        description={
+          <p>
             Inspired by{" "}
             <a
               href="https://uses.tech"
@@ -88,10 +86,11 @@ export default function UsesPage() {
             >
               uses.tech
             </a>
-            . The hardware, software, and quiet rituals that make the work happen.
+            . The hardware, software, and quiet rituals that make the work
+            happen.
           </p>
-        </div>
-      </section>
+        }
+      />
 
       <Section className="py-12 md:py-20">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -117,6 +116,8 @@ export default function UsesPage() {
           ))}
         </div>
       </Section>
+
+      <Contact />
     </>
   );
 }
