@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function Projects() {
   return (
-    <Section id="work">
+    <Section id="work" className="pb-12 md:pb-16">
       <SectionHeading
         eyebrow="Work"
         accent="orange"
@@ -33,7 +33,7 @@ export function Projects() {
           ))}
       </div>
 
-      <div className="mt-12 flex justify-center">
+      <div className="mt-10 flex justify-center">
         <Link
           href="/projects"
           className="group inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-transparent px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
