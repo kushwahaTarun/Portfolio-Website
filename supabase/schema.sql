@@ -35,6 +35,67 @@ create trigger trg_touch_knowledge_base
   before update on public.knowledge_base
   for each row execute function public.touch_knowledge_base_updated_at();
 
+create table if not exists public.rate_limits (
+  rate_key text primary key,
+  request_count integer not null default 0,
+  reset_at timestamptz not null,
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists rate_limits_reset_at_idx
+  on public.rate_limits (reset_at);
+
+alter table public.rate_limits enable row level security;
+
+drop policy if exists "rate_limits_no_client_access" on public.rate_limits;
+create policy "rate_limits_no_client_access"
+  on public.rate_limits
+  for all
+  to anon, authenticated
+  using (false)
+  with check (false);
+
+create or replace function public.check_rate_limit(
+  p_key text,
+  p_limit integer,
+  p_window_seconds integer
+)
+returns table(ok boolean, retry_after integer)
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_now timestamptz := now();
+  v_count integer;
+  v_reset timestamptz;
+begin
+  delete from public.rate_limits
+  where reset_at < v_now - interval '1 day';
+
+  insert into public.rate_limits as rl (rate_key, request_count, reset_at, updated_at)
+  values (p_key, 1, v_now + make_interval(secs => p_window_seconds), v_now)
+  on conflict (rate_key) do update
+    set request_count = case
+          when rl.reset_at <= v_now then 1
+          else rl.request_count + 1
+        end,
+        reset_at = case
+          when rl.reset_at <= v_now then v_now + make_interval(secs => p_window_seconds)
+          else rl.reset_at
+        end,
+        updated_at = v_now
+  returning request_count, reset_at into v_count, v_reset;
+
+  ok := v_count <= p_limit;
+  retry_after := case
+    when ok then 0
+    else greatest(1, ceil(extract(epoch from (v_reset - v_now)))::integer)
+  end;
+  return next;
+end;
+$$;
+
 insert into public.knowledge_base (category, title, content, order_index) values
   ('identity', 'About Tarun',
    'Tarun Kushwaha is a Senior React & Next.js Developer based in Kanpur, India. He has 4 years of experience at Fluid AI building multi-tenant AI products. He is open to full-time roles and freelance engagements. Contact: kushwahatarun9@gmail.com.',
