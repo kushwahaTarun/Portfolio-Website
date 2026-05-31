@@ -11,7 +11,7 @@ export function Section({ className, children, bleed, ...props }: Props) {
     <section
       className={cn(
         "relative w-full",
-        !bleed && "container-px mx-auto max-w-[1400px] py-24 md:py-32",
+        !bleed && "container-px mx-auto max-w-[1400px] py-16 md:py-32",
         className
       )}
       {...props}
@@ -49,7 +49,7 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-14 flex max-w-3xl flex-col gap-4",
+        "mb-10 flex max-w-3xl flex-col gap-4 md:mb-14",
         align === "center" && "mx-auto items-center text-center",
         className
       )}
