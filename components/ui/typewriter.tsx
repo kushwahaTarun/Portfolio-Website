@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -24,14 +24,8 @@ export function Typewriter({
   const [sub, setSub] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
-  // Hold latest words in a ref so a fresh array reference from the parent
-  // doesn't reset the effect mid-cycle.
-  const wordsRef = useRef(words);
-  wordsRef.current = words;
-  const wordsKey = words.join("");
-
   useEffect(() => {
-    const list = wordsRef.current;
+    const list = words.length > 0 ? words : [""];
     const word = list[index] ?? "";
 
     // Finished typing the word — pause, then start deleting
@@ -42,9 +36,11 @@ export function Typewriter({
 
     // Finished deleting — advance to next word
     if (deleting && sub === 0) {
-      setDeleting(false);
-      setIndex((i) => (i + 1) % list.length);
-      return;
+      const t = setTimeout(() => {
+        setDeleting(false);
+        setIndex((i) => (i + 1) % list.length);
+      }, 0);
+      return () => clearTimeout(t);
     }
 
     // Type or delete one character
@@ -53,7 +49,7 @@ export function Typewriter({
       deleting ? deleteSpeed : typeSpeed
     );
     return () => clearTimeout(t);
-  }, [sub, deleting, index, wordsKey, typeSpeed, deleteSpeed, pause]);
+  }, [sub, deleting, index, words, typeSpeed, deleteSpeed, pause]);
 
   const visible = words[index]?.substring(0, sub) ?? "";
 

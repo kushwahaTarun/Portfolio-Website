@@ -437,7 +437,7 @@ function Highlights({ role, active }: { role: Role; active: number }) {
       <div className="mb-4 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
         <span className="h-px w-4 bg-foreground/15" />
         Shipped
-        <span className="text-muted-foreground/60">// what moved</span>
+        <span className="text-muted-foreground/60">{"// what moved"}</span>
       </div>
 
       <div className="grid gap-3 md:grid-cols-2">

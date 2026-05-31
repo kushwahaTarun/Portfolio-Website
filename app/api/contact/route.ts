@@ -3,38 +3,24 @@ import { Resend } from "resend";
 import { contactSchema } from "@/lib/validations/contact";
 import { siteConfig } from "@/lib/site";
 import { ContactNotification } from "@/emails/ContactNotification";
+import { enforceRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
-const buckets = new Map<string, { count: number; reset: number }>();
 const LIMIT = 5;
-const WINDOW_MS = 60 * 60 * 1000;
-
-function rateLimit(ip: string) {
-  const now = Date.now();
-  const bucket = buckets.get(ip);
-  if (!bucket || bucket.reset < now) {
-    buckets.set(ip, { count: 1, reset: now + WINDOW_MS });
-    return { ok: true };
-  }
-  if (bucket.count >= LIMIT) {
-    return { ok: false, retryAfter: Math.ceil((bucket.reset - now) / 1000) };
-  }
-  bucket.count += 1;
-  return { ok: true };
-}
+const WINDOW_SECONDS = 60 * 60;
 
 export async function POST(request: Request) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    request.headers.get("x-real-ip") ??
-    "unknown";
-
-  const limit = rateLimit(ip);
+  const limit = await enforceRateLimit({
+    request,
+    scope: "contact",
+    limit: LIMIT,
+    windowSeconds: WINDOW_SECONDS,
+  });
   if (!limit.ok) {
     return NextResponse.json(
-      { error: "Too many requests. Try again later." },
-      { status: 429, headers: { "Retry-After": String(limit.retryAfter ?? 60) } }
+      { error: limit.error },
+      { status: limit.status, headers: { "Retry-After": String(limit.retryAfter) } }
     );
   }
 

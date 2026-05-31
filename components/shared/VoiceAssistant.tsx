@@ -62,9 +62,12 @@ export function VoiceAssistant() {
   );
 
   useEffect(() => {
-    const Ctor = getSpeechRecognitionCtor();
-    const hasTts = typeof window !== "undefined" && "speechSynthesis" in window;
-    setSupported(Boolean(Ctor) && hasTts);
+    const id = window.setTimeout(() => {
+      const Ctor = getSpeechRecognitionCtor();
+      const hasTts = "speechSynthesis" in window;
+      setSupported(Boolean(Ctor) && hasTts);
+    }, 0);
+    return () => window.clearTimeout(id);
   }, []);
 
   useEffect(() => {

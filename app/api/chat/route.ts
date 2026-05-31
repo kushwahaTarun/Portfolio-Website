@@ -1,29 +1,14 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { buildSystemPrompt } from "@/lib/assistant";
+import { enforceRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
 const MAX_TURNS = 10;
 const MAX_MESSAGE_LENGTH = 800;
 const RATE_LIMIT_PER_HOUR = 20;
-const WINDOW_MS = 60 * 60 * 1000;
-
-const buckets = new Map<string, { count: number; reset: number }>();
-
-function rateLimit(ip: string) {
-  const now = Date.now();
-  const bucket = buckets.get(ip);
-  if (!bucket || bucket.reset < now) {
-    buckets.set(ip, { count: 1, reset: now + WINDOW_MS });
-    return { ok: true as const };
-  }
-  if (bucket.count >= RATE_LIMIT_PER_HOUR) {
-    return { ok: false as const, retryAfter: Math.ceil((bucket.reset - now) / 1000) };
-  }
-  bucket.count += 1;
-  return { ok: true as const };
-}
+const WINDOW_SECONDS = 60 * 60;
 
 const messageSchema = z.object({
   role: z.enum(["user", "assistant"]),
@@ -35,16 +20,21 @@ const bodySchema = z.object({
 });
 
 export async function POST(request: Request) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-    request.headers.get("x-real-ip") ??
-    "unknown";
-
-  const limit = rateLimit(ip);
+  const limit = await enforceRateLimit({
+    request,
+    scope: "chat",
+    limit: RATE_LIMIT_PER_HOUR,
+    windowSeconds: WINDOW_SECONDS,
+  });
   if (!limit.ok) {
     return NextResponse.json(
-      { error: "You've hit the hourly limit. Please try again later or use the contact form." },
-      { status: 429, headers: { "Retry-After": String(limit.retryAfter ?? 60) } }
+      {
+        error:
+          limit.status === 429
+            ? "You've hit the hourly limit. Please try again later or use the contact form."
+            : limit.error,
+      },
+      { status: limit.status, headers: { "Retry-After": String(limit.retryAfter) } }
     );
   }
 

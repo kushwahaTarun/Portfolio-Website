@@ -15,7 +15,7 @@ export const siteConfig = {
     github: "https://github.com/kushwahaTarun",
     linkedin: "https://www.linkedin.com/in/tarun-kushwaha-413363213",
     twitter: "https://twitter.com/",
-    resume: "/resume.pdf",
+    resume: "/tarun_resume.pdf",
   },
   nav: [
     { label: "Work", href: "/projects" },
