@@ -104,7 +104,7 @@ function ProjectsHero({
   setActive: (k: FilterKey) => void;
 }) {
   return (
-    <section className="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
+    <section className="relative overflow-hidden pt-20 pb-10 md:pt-28 md:pb-16">
       <GradientOrbs />
 
       {/* Animated subtle grid */}
@@ -148,7 +148,7 @@ function ProjectsHero({
           / Projects
         </motion.span>
 
-        <h1 className="mt-6 text-balance text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-[5.5rem]">
+        <h1 className="mt-6 text-balance text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-[5.5rem]">
           <span className="block">
             <AnimatedText text="Things I've" />
           </span>

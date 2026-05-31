@@ -108,7 +108,35 @@ export function Skills() {
         <p className="mb-6 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
           — what I build with —
         </p>
-        <div className="flex justify-center">
+        {/* Mobile: wrapped grid (no horizontal overflow) */}
+        <div className="grid grid-cols-5 gap-2.5 rounded-3xl border border-foreground/[0.08] bg-white p-4 shadow-[0_24px_64px_-32px_rgba(28,24,21,0.22)] sm:grid-cols-7 md:hidden">
+          {dockItems.map((item) => (
+            <div
+              key={item.name}
+              className="relative flex aspect-square items-center justify-center overflow-hidden rounded-[26%] shadow-[0_4px_12px_-4px_rgba(28,24,21,0.25),inset_0_1px_0_rgba(255,255,255,0.35)]"
+              style={{
+                background: item.gradient,
+                color: item.textColor ?? "#ffffff",
+              }}
+              aria-label={item.name}
+            >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-1/2 rounded-t-[26%]"
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.32) 0%, rgba(255,255,255,0.04) 100%)",
+                }}
+              />
+              <div className="relative flex h-1/2 w-1/2 items-center justify-center [&>svg]:h-full [&>svg]:w-full">
+                {item.icon}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop: original floating dock */}
+        <div className="hidden justify-center md:flex">
           <FloatingDock items={dockItems} />
         </div>
       </div>

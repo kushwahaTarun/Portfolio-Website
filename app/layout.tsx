@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/shared/CustomCursor";
 import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { CommandPalette } from "@/components/shared/CommandPalette";
+import { VoiceAssistant } from "@/components/shared/VoiceAssistant";
 import { siteConfig } from "@/lib/site";
 
 const sans = Inter({
@@ -98,6 +99,7 @@ export default function RootLayout({
           <Header />
           <main className="relative">{children}</main>
           <Footer />
+          <VoiceAssistant />
         </Providers>
       </body>
     </html>
