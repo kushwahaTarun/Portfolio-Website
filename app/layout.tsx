@@ -44,6 +44,9 @@ export const metadata: Metadata = {
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Tarun Kushwaha",
     "Senior React Developer",
@@ -62,12 +65,6 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — ${siteConfig.role}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.role}`,
-    description: siteConfig.description,
-    creator: "@",
   },
   robots: {
     index: true,

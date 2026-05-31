@@ -1,44 +1,52 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/shared/Section";
-import { GradientOrbs } from "@/components/shared/GradientOrbs";
+import { PageHero } from "@/components/shared/PageHero";
 import { siteConfig } from "@/lib/site";
 import { Experience } from "@/components/home/Experience";
 import { Stack } from "@/components/home/Stack";
+import { Contact } from "@/components/home/Contact";
+
+const aboutTitle = `About — ${siteConfig.name}`;
+const aboutDescription = `${siteConfig.name} is a Team Lead and Senior React / Next.js engineer based in Kanpur, India. 4+ years shipping production React at Fluid AI. Principles, off-hours, and how I think about the work.`;
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${siteConfig.name} — ${siteConfig.role}.`,
+  description: aboutDescription,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    type: "profile",
+    url: `${siteConfig.url}/about`,
+    title: aboutTitle,
+    description: aboutDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 export default function AboutPage() {
   const totalYears = new Date().getFullYear() - 2022;
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
-        <GradientOrbs />
-        <div className="container-px mx-auto max-w-[1400px]">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            / About
-          </span>
-          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-            A frontend dev who got <span className="gradient-text">curious</span>{" "}
-            and never quite stopped.
-          </h1>
-          <p className="mt-8 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
+      <PageHero
+        eyebrow="About"
+        prefix="A frontend dev who got"
+        highlight="curious."
+        underlineWidth="62%"
+        description={
+          <p>
             I&apos;m Tarun. I live in Kanpur, India, and I&apos;ve been writing
             React professionally for {totalYears}+ years — currently at Fluid AI,
             where I work on an AI workspace product. On the weekends I&apos;m
             usually playing with whatever new AI SDK just came out.
           </p>
-        </div>
-      </section>
+        }
+      />
 
       <Section className="py-20 md:py-28">
         <div className="grid gap-12 lg:grid-cols-2">
           <div>
-            <h2 className="mb-6 text-3xl font-semibold tracking-tight md:text-4xl">
+            <SubHeading accent="orange" eyebrow="Principles">
               How I think about the work
-            </h2>
+            </SubHeading>
             <ul className="space-y-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               <li>
                 <span className="text-foreground">Small PRs over big ones.</span>{" "}
@@ -67,9 +75,9 @@ export default function AboutPage() {
           </div>
 
           <div>
-            <h2 className="mb-6 text-3xl font-semibold tracking-tight md:text-4xl">
+            <SubHeading accent="cyan" eyebrow="Off-hours">
               When I&apos;m not coding
-            </h2>
+            </SubHeading>
             <ul className="space-y-5 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
               <li>
                 Reading too much about state management and motion design.
@@ -91,6 +99,37 @@ export default function AboutPage() {
 
       <Experience />
       <Stack />
+      <Contact />
     </>
+  );
+}
+
+const accentMap = {
+  orange: "bg-[--color-brand-orange]",
+  cyan: "bg-[--color-brand-cyan]",
+  lime: "bg-[--color-brand-lime]",
+  pink: "bg-[--color-brand-pink]",
+  indigo: "bg-[--color-brand-indigo]",
+} as const;
+
+function SubHeading({
+  eyebrow,
+  accent = "orange",
+  children,
+}: {
+  eyebrow: string;
+  accent?: keyof typeof accentMap;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mb-6 flex flex-col gap-3">
+      <span className="inline-flex w-fit items-center gap-2 rounded-full border border-foreground/10 bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-foreground sticker">
+        <span className={`size-1.5 rounded-full ${accentMap[accent]}`} />
+        {eyebrow}
+      </span>
+      <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+        {children}
+      </h2>
+    </div>
   );
 }

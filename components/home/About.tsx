@@ -254,7 +254,7 @@ export function About() {
                   aria-hidden
                   className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-black/20 to-transparent"
                 />
-                <Sparkles className="inset-0" count={6} colors={["#ffffff"]} />
+                <Sparkles className="inset-0" count={3} colors={["#ffffff"]} />
                 <div className="absolute left-5 top-5 z-10 flex items-center gap-2 rounded-full bg-white/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.15em] text-foreground sticker">
                   <span className="relative flex size-1.5">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[--color-brand-lime] opacity-75" />

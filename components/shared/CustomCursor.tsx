@@ -10,14 +10,16 @@ export function CustomCursor() {
   const springY = useSpring(y, { damping: 30, stiffness: 350, mass: 0.3 });
 
   const [hovering, setHovering] = useState(false);
-  const [enabled, setEnabled] = useState(false);
+  const [enabled] = useState<boolean>(() =>
+    typeof window === "undefined"
+      ? false
+      : window.matchMedia("(pointer: fine)").matches
+  );
 
   useEffect(() => {
-    const fine = window.matchMedia("(pointer: fine)").matches;
-    if (!fine) return;
+    if (!enabled) return;
 
     let lastInteractive = false;
-    const enableId = window.setTimeout(() => setEnabled(true), 0);
 
     const move = (e: MouseEvent) => {
       x.set(e.clientX);
@@ -35,10 +37,9 @@ export function CustomCursor() {
 
     window.addEventListener("mousemove", move, { passive: true });
     return () => {
-      window.clearTimeout(enableId);
       window.removeEventListener("mousemove", move);
     };
-  }, [x, y]);
+  }, [enabled, x, y]);
 
   if (!enabled) return null;
 

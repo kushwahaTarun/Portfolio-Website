@@ -420,10 +420,7 @@ function Mouth({
   const interiorOpacity = useTransform(mouth, [0, 0.15, 1], [0, 0.85, 1]);
   const lowerLipPath = useTransform(
     [lowerLipY, lowerLipCurve] as const,
-    ([y, c]) =>
-      `M 84 158 Q 100 ${y as number} 116 158 Q 100 ${
-        (y as number) - (c as number)
-      } 84 158 Z`
+    ([y, c]) => `M 84 158 Q 100 ${y as number} 116 158 Q 100 ${(y as number) - (c as number)} 84 158 Z`
   );
 
   if (status === "speaking") {
