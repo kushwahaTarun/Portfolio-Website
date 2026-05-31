@@ -18,7 +18,13 @@ type Spark = {
   color: string;
   delay: number;
   duration: number;
+  repeatDelay: number;
 };
+
+function seededUnit(seed: number) {
+  const value = Math.sin(seed * 12.9898) * 43758.5453;
+  return value - Math.floor(value);
+}
 
 export function Sparkles({
   className,
@@ -29,12 +35,13 @@ export function Sparkles({
     () =>
       Array.from({ length: count }).map((_, i) => ({
         id: i,
-        top: Math.random() * 100,
-        left: Math.random() * 100,
-        size: 4 + Math.random() * 8,
+        top: seededUnit(i + 1) * 100,
+        left: seededUnit(i + 11) * 100,
+        size: 4 + seededUnit(i + 21) * 8,
         color: colors[i % colors.length],
-        delay: Math.random() * 2,
-        duration: 1.4 + Math.random() * 1.8,
+        delay: seededUnit(i + 31) * 2,
+        duration: 1.4 + seededUnit(i + 41) * 1.8,
+        repeatDelay: seededUnit(i + 51) * 2,
       })),
     [count, colors]
   );
@@ -63,7 +70,7 @@ export function Sparkles({
             delay: s.delay,
             duration: s.duration,
             repeat: Infinity,
-            repeatDelay: Math.random() * 2,
+            repeatDelay: s.repeatDelay,
             ease: "easeInOut",
           }}
         >
