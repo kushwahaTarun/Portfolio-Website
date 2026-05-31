@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/shared/Section";
-import { GradientOrbs } from "@/components/shared/GradientOrbs";
+import { PageHero } from "@/components/shared/PageHero";
+import { Contact } from "@/components/home/Contact";
+import { siteConfig } from "@/lib/site";
+
+const nowTitle = `Now — ${siteConfig.name}`;
+const nowDescription =
+  "What Tarun Kushwaha is focused on right now — current work at Fluid AI, side projects, what I'm learning, and what I'm open to. Inspired by Derek Sivers' /now page.";
 
 export const metadata: Metadata = {
   title: "Now",
-  description: "What I'm focused on right now.",
+  description: nowDescription,
+  alternates: { canonical: "/now" },
+  openGraph: {
+    type: "website",
+    url: `${siteConfig.url}/now`,
+    title: nowTitle,
+    description: nowDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 const now = [
@@ -40,10 +54,10 @@ const now = [
     ],
   },
   {
-    label: "Open to",
+    label: "Open for",
     items: [
+      "Freelance full-stack engagements — Next.js front-ends, Node / Mongo back-ends, Docker deploys. Audits, MVPs, and pair consulting. Details on the services page.",
       "Interesting frontend or full-stack roles — remote or hybrid.",
-      "Freelance and side-project collabs if the idea's good.",
       "Pairing with newer devs who are trying to figure out React.",
     ],
   },
@@ -57,18 +71,16 @@ export default function NowPage() {
   });
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
-        <GradientOrbs />
-        <div className="container-px mx-auto max-w-[1400px]">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            / Now — updated {today}
-          </span>
-          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-            What I&apos;m up to <span className="gradient-text">right now</span>.
-          </h1>
-          <p className="mt-8 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
-            A tiny, honest snapshot of what&apos;s taking up my brain this month —
-            updated whenever life or work shifts gears. Inspired by Derek Sivers&apos;{" "}
+      <PageHero
+        eyebrow={`Now — updated ${today}`}
+        prefix="What I'm up to"
+        highlight="right now."
+        underlineWidth="78%"
+        description={
+          <p>
+            A tiny, honest snapshot of what&apos;s taking up my brain this
+            month — updated whenever life or work shifts gears. Inspired by
+            Derek Sivers&apos;{" "}
             <a
               href="https://nownownow.com/about"
               target="_blank"
@@ -79,10 +91,10 @@ export default function NowPage() {
             </a>{" "}
             page.
           </p>
-        </div>
-      </section>
+        }
+      />
 
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <div className="grid gap-8 md:grid-cols-2">
           {now.map((block) => (
             <div
@@ -104,6 +116,8 @@ export default function NowPage() {
           ))}
         </div>
       </Section>
+
+      <Contact />
     </>
   );
 }

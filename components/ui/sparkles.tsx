@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -21,9 +21,17 @@ type Spark = {
   repeatDelay: number;
 };
 
-function seededUnit(seed: number) {
-  const value = Math.sin(seed * 12.9898) * 43758.5453;
-  return value - Math.floor(value);
+function generateSparks(count: number, colors: string[]): Spark[] {
+  return Array.from({ length: count }).map((_, i) => ({
+    id: i,
+    top: Math.random() * 100,
+    left: Math.random() * 100,
+    size: 4 + Math.random() * 8,
+    color: colors[i % colors.length],
+    delay: Math.random() * 2,
+    duration: 1.4 + Math.random() * 1.8,
+    repeatDelay: Math.random() * 2,
+  }));
 }
 
 export function Sparkles({
@@ -31,20 +39,7 @@ export function Sparkles({
   count = 14,
   colors = ["#e85d04", "#db2777", "#4f46e5", "#0891b2", "#65a30d", "#f59e0b"],
 }: Props) {
-  const sparks: Spark[] = useMemo(
-    () =>
-      Array.from({ length: count }).map((_, i) => ({
-        id: i,
-        top: seededUnit(i + 1) * 100,
-        left: seededUnit(i + 11) * 100,
-        size: 4 + seededUnit(i + 21) * 8,
-        color: colors[i % colors.length],
-        delay: seededUnit(i + 31) * 2,
-        duration: 1.4 + seededUnit(i + 41) * 1.8,
-        repeatDelay: seededUnit(i + 51) * 2,
-      })),
-    [count, colors]
-  );
+  const [sparks] = useState<Spark[]>(() => generateSparks(count, colors));
 
   return (
     <div

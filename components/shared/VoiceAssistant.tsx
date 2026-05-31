@@ -1,11 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useIsMobile } from "@/lib/use-is-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, type AvatarStatus } from "@/components/shared/Avatar";
+import { useIsMobile } from "@/lib/use-is-mobile";
 
 type Status = AvatarStatus;
 type Turn = { role: "user" | "assistant"; content: string };
@@ -46,7 +46,10 @@ export function VoiceAssistant() {
   const [reply, setReply] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [turns, setTurns] = useState<Turn[]>([]);
-  const [supported, setSupported] = useState<boolean>(true);
+  const [supported] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    return Boolean(getSpeechRecognitionCtor()) && "speechSynthesis" in window;
+  });
   const [mouthIntensity, setMouthIntensity] = useState(0);
   const isMobile = useIsMobile();
 
@@ -60,15 +63,6 @@ export function VoiceAssistant() {
     () => turns.filter((t) => t.role === "user").length >= MAX_USER_TURNS,
     [turns]
   );
-
-  useEffect(() => {
-    const id = window.setTimeout(() => {
-      const Ctor = getSpeechRecognitionCtor();
-      const hasTts = "speechSynthesis" in window;
-      setSupported(Boolean(Ctor) && hasTts);
-    }, 0);
-    return () => window.clearTimeout(id);
-  }, []);
 
   useEffect(() => {
     return () => {

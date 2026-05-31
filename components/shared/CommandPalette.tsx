@@ -11,6 +11,7 @@ import {
   Code2,
   FileText,
   Github,
+  Handshake,
   Linkedin,
   Mail,
   Sparkles,
@@ -36,7 +37,11 @@ export function CommandPalette() {
 
   const go = (href: string) => {
     setOpen(false);
-    if (href.startsWith("http") || href.startsWith("mailto")) {
+    if (
+      href.startsWith("http") ||
+      href.startsWith("mailto") ||
+      href.endsWith(".pdf")
+    ) {
       window.open(href, "_blank", "noopener,noreferrer");
     } else {
       router.push(href);
@@ -77,6 +82,12 @@ export function CommandPalette() {
                   onSelect={() => go("/projects")}
                 >
                   Projects
+                </PaletteItem>
+                <PaletteItem
+                  icon={<Handshake size={16} />}
+                  onSelect={() => go("/services")}
+                >
+                  Services / Work with me
                 </PaletteItem>
                 <PaletteItem icon={<User size={16} />} onSelect={() => go("/about")}>
                   About

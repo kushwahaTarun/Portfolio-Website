@@ -1,38 +1,46 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { FileDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Section } from "@/components/shared/Section";
-import { GradientOrbs } from "@/components/shared/GradientOrbs";
+import { PageHero } from "@/components/shared/PageHero";
 import { siteConfig } from "@/lib/site";
 import { ContactForm } from "./ContactForm";
 
+const contactTitle = `Contact — ${siteConfig.name}`;
+const contactDescription =
+  "Get in touch with Tarun Kushwaha — Senior React / Next.js engineer. Open to full-time roles and freelance engagements. Usually reply within a day.";
+
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Get in touch with Tarun Kushwaha — senior React.js / Next.js engineer.",
+  description: contactDescription,
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    type: "website",
+    url: `${siteConfig.url}/contact`,
+    title: contactTitle,
+    description: contactDescription,
+    siteName: siteConfig.name,
+  },
 };
 
 export default function ContactPage() {
   return (
     <>
-      <section className="relative overflow-hidden pt-24 pb-12 md:pt-28 md:pb-16">
-        <GradientOrbs />
-        <div className="container-px mx-auto max-w-[1400px]">
-          <span className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-            / Contact
-          </span>
-          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-            Let&apos;s <span className="gradient-text">talk</span>.
-          </h1>
-          <p className="mt-8 max-w-2xl text-pretty text-base text-muted-foreground md:text-lg">
-            A new role, a freelance build, a question about React, or just a hello
-            — I read every message and usually reply within a day or two. No
-            template, no sales pitch.
+      <PageHero
+        eyebrow="Contact"
+        prefix="Let's"
+        highlight="talk."
+        underlineWidth="92%"
+        description={
+          <p>
+            A new role, a freelance build, a question about React, or just a
+            hello — I read every message and usually reply within a day or
+            two. No template, no sales pitch.
           </p>
-        </div>
-      </section>
+        }
+      />
 
-      <Section className="py-12 md:py-20">
+      <Section className="py-16 md:py-28">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr]">
           <ContactForm />
 
@@ -60,7 +68,7 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:underline underline-offset-4"
                   >
-                    @kushwahatarun9
+                    @{siteConfig.links.github.replace(/^https?:\/\/github\.com\//, "").replace(/\/$/, "")}
                   </Link>
                 </ContactRow>
                 <ContactRow icon={<Linkedin size={16} />} label="LinkedIn">
@@ -70,27 +78,57 @@ export default function ContactPage() {
                     rel="noopener noreferrer"
                     className="text-foreground hover:underline underline-offset-4"
                   >
-                    /in/tarun-kushwaha-react
+                    /in/{siteConfig.links.linkedin.replace(/^https?:\/\/(www\.)?linkedin\.com\/in\//, "").replace(/\/$/, "")}
                   </Link>
                 </ContactRow>
-                <ContactRow icon={<Phone size={16} />} label="Phone">
-                  <Link
-                    href={`tel:${siteConfig.phone}`}
+                <ContactRow icon={<FileDown size={16} />} label="Resume">
+                  <a
+                    href={siteConfig.links.resume}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
                     className="text-foreground hover:underline underline-offset-4"
                   >
-                    {siteConfig.phone}
-                  </Link>
+                    Download PDF
+                  </a>
                 </ContactRow>
               </ul>
             </div>
 
             <div className="rounded-2xl border border-foreground/[0.08] bg-white paper p-7">
               <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                Currently
+                Currently open to
               </h2>
-              <p className="text-sm text-foreground/85">
-                Open to interesting frontend or full-stack work. Comfortable with
-                async, remote, and time-zone-friendly teams.
+              <ul className="space-y-3 text-sm text-foreground/85">
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[--color-brand-lime]" />
+                  <span>
+                    <span className="font-medium text-foreground">
+                      Full-time roles
+                    </span>{" "}
+                    — Senior / Lead frontend or full-stack, remote or hybrid.
+                  </span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-[--color-brand-orange]" />
+                  <span>
+                    <span className="font-medium text-foreground">
+                      Freelance engagements
+                    </span>{" "}
+                    — Next.js, Node, Mongo, Docker. Audits, MVPs, pair
+                    consulting.{" "}
+                    <Link
+                      href="/services"
+                      className="text-foreground underline-offset-4 hover:underline"
+                    >
+                      See engagement types →
+                    </Link>
+                  </span>
+                </li>
+              </ul>
+              <p className="mt-4 text-xs text-muted-foreground">
+                Drop a message — I&apos;ll share my phone number in the reply
+                so we can jump on a quick call.
               </p>
             </div>
           </aside>

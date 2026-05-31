@@ -63,9 +63,7 @@ export function TiltCard({ children, className, max = 8, glare = true }: Props) 
         <motion.div
           aria-hidden
           className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 mix-blend-soft-light transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: glareBackground,
-          }}
+          style={{ background: glareBackground }}
         />
       )}
     </motion.div>
