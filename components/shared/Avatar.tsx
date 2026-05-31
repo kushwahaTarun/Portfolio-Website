@@ -418,6 +418,13 @@ function Mouth({
   const lowerLipY = useTransform(mouth, [0, 1], [158, 168]);
   const lowerLipCurve = useTransform(mouth, [0, 1], [4, 12]);
   const interiorOpacity = useTransform(mouth, [0, 0.15, 1], [0, 0.85, 1]);
+  const lowerLipPath = useTransform(
+    [lowerLipY, lowerLipCurve] as const,
+    ([y, c]) =>
+      `M 84 158 Q 100 ${y as number} 116 158 Q 100 ${
+        (y as number) - (c as number)
+      } 84 158 Z`
+  );
 
   if (status === "speaking") {
     return (
@@ -435,10 +442,7 @@ function Mouth({
         />
         {/* Lower lip — animates */}
         <motion.path
-          d={useTransform(
-            [lowerLipY, lowerLipCurve] as const,
-            ([y, c]) => `M 84 158 Q 100 ${y as number} 116 158 Q 100 ${(y as number) - (c as number)} 84 158 Z`
-          )}
+          d={lowerLipPath}
           fill="#b85a48"
         />
         {/* Teeth hint */}
