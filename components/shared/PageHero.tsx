@@ -73,7 +73,7 @@ export function PageHero({
           / {eyebrow}
         </motion.span>
 
-        <h1 className="mt-6 max-w-4xl text-balance text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-8xl">
+        <h1 className="mt-6 max-w-4xl text-balance text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
           <span className="block">
             <AnimatedText text={prefix} />
           </span>

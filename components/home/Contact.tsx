@@ -44,7 +44,7 @@ export function Contact() {
               </span>
               Inbox is open
             </span>
-            <h2 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            <h2 className="mt-6 text-balance text-5xl font-semibold tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Got an idea? <br />
               <span className="font-display italic text-[--color-brand-orange]">
                 Tell me about it.

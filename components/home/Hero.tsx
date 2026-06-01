@@ -30,7 +30,7 @@ export function Hero() {
               </span>
               Open to full-time roles &amp; freelance
             </motion.div>
-            <h1 className="text-balance text-4xl font-semibold leading-[1] tracking-tight md:text-6xl lg:text-[5.5rem]">
+            <h1 className="text-balance text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl md:text-6xl lg:text-[5.5rem]">
               <span className="block">
                 <AnimatedText text="Hey, I'm" />
               </span>

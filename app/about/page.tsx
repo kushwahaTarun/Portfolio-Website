@@ -127,7 +127,7 @@ function SubHeading({
         <span className={`size-1.5 rounded-full ${accentMap[accent]}`} />
         {eyebrow}
       </span>
-      <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+      <h2 className="text-4xl font-semibold tracking-tight sm:text-4xl md:text-4xl">
         {children}
       </h2>
     </div>

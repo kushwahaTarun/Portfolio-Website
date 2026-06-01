@@ -9,7 +9,7 @@ export function Footer() {
       <div className="container-px mx-auto max-w-[1400px] py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <h3 className="mb-4 text-balance text-3xl font-semibold tracking-tight md:text-5xl">
+            <h3 className="mb-4 text-balance text-4xl font-semibold tracking-tight md:text-5xl">
               Want to chat? <br />
               <span className="gradient-text">My inbox is open.</span>
             </h3>
