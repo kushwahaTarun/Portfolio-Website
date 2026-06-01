@@ -69,7 +69,7 @@ export function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7, delay: 0.05 }}
-            className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl lg:text-[3.5rem]"
+            className="text-balance text-5xl font-semibold leading-[1.05] tracking-tight md:text-5xl lg:text-[3.5rem]"
           >
             Frontend by day,{" "}
             <span className="relative inline-block">
