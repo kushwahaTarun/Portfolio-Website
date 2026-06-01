@@ -149,7 +149,7 @@ function ProjectsHero({
           / Projects
         </motion.span>
 
-        <h1 className="mt-6 text-balance text-4xl font-semibold leading-[0.95] tracking-tight sm:text-5xl md:text-7xl lg:text-[5.5rem]">
+        <h1 className="mt-6 text-balance text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-[5.5rem]">
           <span className="block">
             <AnimatedText text="Things I've" />
           </span>
@@ -487,7 +487,7 @@ function FeaturedCard({ project, index }: { project: Project; index: number }) {
                 {indexLabel} / featured
               </span>
             </div>
-            <h3 className="mt-5 text-balance text-3xl font-semibold leading-[1.05] tracking-tight md:text-4xl lg:text-5xl">
+            <h3 className="mt-5 text-balance text-[2rem] font-semibold leading-[1.05] tracking-tight sm:text-4xl md:text-4xl lg:text-5xl">
               {project.title}
             </h3>
             <p className="mt-3 font-display text-lg italic text-muted-foreground md:text-xl">

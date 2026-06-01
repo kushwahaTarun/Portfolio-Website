@@ -107,7 +107,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 {project.year} · {project.role}
               </span>
             </div>
-            <h3 className="text-balance text-2xl font-semibold tracking-tight md:text-3xl">
+            <h3 className="text-balance text-[1.75rem] font-semibold tracking-tight sm:text-3xl md:text-3xl">
               {project.title}
             </h3>
             <p className="mt-1 font-display text-base italic text-muted-foreground md:text-lg">
