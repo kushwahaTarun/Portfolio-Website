@@ -191,12 +191,10 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.45 }}
             className="mt-8 text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
           >
-            On the side I build with whatever new AI SDK looks interesting —
-            recently a{" "}
-            <ProjectTag color="#e85d04">Interactive Avatar</ProjectTag>{" "}
-            with HeyGen, and a{" "}
-            <ProjectTag color="#4f46e5">Gen-AI Chat</ProjectTag> with voice in and
-            out.
+            On the side, I build end-to-end applications — including a{" "}
+            <ProjectTag color="#0284c7">RAG Knowledge Assistant</ProjectTag>, a{" "}
+            <ProjectTag color="#7c3aed">Tool-Calling Research Agent</ProjectTag>,
+            and a QR digital dining platform.
           </motion.p>
 
           {/* Signature row with shortcut hint */}
