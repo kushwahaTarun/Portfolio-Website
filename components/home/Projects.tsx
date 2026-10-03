@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight, ExternalLink, Github } from "lucide-react";
 import { Section, SectionHeading } from "@/components/shared/Section";
-import { featuredProjects, projects, type Project } from "@/lib/data/projects";
+import { featuredProjects, type Project } from "@/lib/data/projects";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { cn } from "@/lib/utils";
 
@@ -15,22 +15,13 @@ export function Projects() {
         eyebrow="Work"
         accent="orange"
         title="Stuff I've built lately."
-        description="A mix of what I work on full-time and what I tinker with after hours."
+        description="A selection of my active applications, from AI-powered research and document search to digital dining."
       />
 
-      <div className="grid gap-5 md:grid-cols-6 md:auto-rows-[280px]">
+      <div className="grid gap-5 md:grid-cols-6 md:auto-rows-[340px]">
         {featuredProjects.map((p, i) => (
           <ProjectCard key={p.slug} project={p} index={i} />
         ))}
-        {projects
-          .filter((p) => !p.featured)
-          .map((p, i) => (
-            <ProjectCard
-              key={p.slug}
-              project={p}
-              index={featuredProjects.length + i}
-            />
-          ))}
       </div>
 
       <div className="mt-10 flex justify-center">
@@ -113,16 +104,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             <p className="mt-1 font-display text-base italic text-muted-foreground md:text-lg">
               {project.tagline}
             </p>
-            {project.size === "lg" && (
-              <p className="mt-5 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground/90">
-                {project.description}
-              </p>
-            )}
+            <p className="mt-5 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground/90">
+              {project.description}
+            </p>
           </div>
 
           <div className="flex items-end justify-between gap-3">
             <div className="flex flex-wrap gap-1.5">
-              {project.stack.slice(0, project.size === "lg" ? 6 : 3).map((s) => (
+              {project.stack.slice(0, 4).map((s) => (
                 <span
                   key={s}
                   className="rounded-full border border-foreground/10 bg-foreground/[0.03] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-foreground/80"
@@ -131,6 +120,9 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 </span>
               ))}
             </div>
+            <Link href="/projects" className="shrink-0 text-xs font-medium text-foreground/65 underline decoration-foreground/25 underline-offset-4 hover:text-foreground">
+              Stack details
+            </Link>
             <div className="flex shrink-0 gap-1.5">
               {project.repo && (
                 <Link
