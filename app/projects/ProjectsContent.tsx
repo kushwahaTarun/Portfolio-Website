@@ -1,19 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   ExternalLink,
   Github,
   Sparkles as SparklesIcon,
-  Filter,
-  Workflow,
-  MessageSquare,
-  Mic,
   Bot,
-  Blocks,
+  Mic,
   Wrench,
 } from "lucide-react";
 import { Section } from "@/components/shared/Section";
@@ -29,21 +24,11 @@ import { Contact } from "@/components/home/Contact";
 import { projects, type Project } from "@/lib/data/projects";
 import { cn } from "@/lib/utils";
 
-type FilterKey = "all" | "Day job" | "Side project";
-
-const filters: { key: FilterKey; label: string }[] = [
-  { key: "all", label: "Everything" },
-  { key: "Day job", label: "Day job" },
-  { key: "Side project", label: "Side projects" },
-];
-
 const previewIcons: Record<string, React.ReactNode> = {
-  "fluid-gpt-admin": <Bot size={28} strokeWidth={1.6} />,
-  "agentic-workflow-editor": <Workflow size={28} strokeWidth={1.6} />,
-  "fluid-chatbot-platform": <MessageSquare size={28} strokeWidth={1.6} />,
-  "interactive-avatar": <Mic size={28} strokeWidth={1.6} />,
-  "gen-ai-chat": <MessageSquare size={28} strokeWidth={1.6} />,
-  "fluid-integrate-store": <Blocks size={28} strokeWidth={1.6} />,
+  "rag-knowledge-assistant": <Bot size={28} strokeWidth={1.6} />,
+  "tool-calling-research-agent": <SparklesIcon size={28} strokeWidth={1.6} />,
+  "content-repurposing-tool": <SparklesIcon size={28} strokeWidth={1.6} />,
+  "qr-digital-dining": <Wrench size={28} strokeWidth={1.6} />,
 };
 
 const sizeSpan: Record<NonNullable<Project["size"]>, string> = {
@@ -53,41 +38,21 @@ const sizeSpan: Record<NonNullable<Project["size"]>, string> = {
 };
 
 export function ProjectsContent() {
-  const [active, setActive] = useState<FilterKey>("all");
-
-  const visible = useMemo(
-    () => (active === "all" ? projects : projects.filter((p) => p.role === active)),
-    [active]
-  );
-
-  const counts = useMemo(
-    () => ({
-      total: projects.length,
-      day: projects.filter((p) => p.role === "Day job").length,
-      side: projects.filter((p) => p.role === "Side project").length,
-      years: new Set(projects.map((p) => p.year)).size,
-    }),
-    []
-  );
+  const counts = {
+    total: projects.length,
+    technologies: new Set(projects.flatMap((project) => project.stack)).size,
+  };
 
   return (
     <>
-      <ProjectsHero counts={counts} active={active} setActive={setActive} />
+      <ProjectsHero counts={counts} />
 
       <Section className="pb-24 pt-4 md:pb-32 md:pt-8">
-        <AnimatePresence mode="popLayout">
-          <div className="grid gap-5 md:grid-cols-12 md:auto-rows-[280px]">
-            {visible.map((p, i) => (
-              <ProjectCard key={p.slug} project={p} index={i} />
-            ))}
-          </div>
-        </AnimatePresence>
-
-        {visible.length === 0 && (
-          <div className="rounded-3xl border border-dashed border-foreground/15 bg-white/50 p-12 text-center text-sm text-muted-foreground">
-            Nothing here yet. Check back soon.
-          </div>
-        )}
+        <div className="grid gap-5 md:grid-cols-12">
+          {projects.map((p, i) => (
+            <ProjectCard key={p.slug} project={p} index={i} />
+          ))}
+        </div>
       </Section>
 
       <Contact />
@@ -97,12 +62,8 @@ export function ProjectsContent() {
 
 function ProjectsHero({
   counts,
-  active,
-  setActive,
 }: {
-  counts: { total: number; day: number; side: number; years: number };
-  active: FilterKey;
-  setActive: (k: FilterKey) => void;
+  counts: { total: number; technologies: number };
 }) {
   return (
     <section className="relative overflow-hidden pt-20 pb-10 md:pt-28 md:pb-16">
@@ -195,9 +156,9 @@ function ProjectsHero({
           transition={{ delay: 0.9, duration: 0.6 }}
           className="mt-10 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          A mix of work I do full-time and projects I keep open in a second
-          editor window. Some are years old, some shipped last weekend — all
-          of them taught me something I didn&apos;t know going in.
+          Four active applications spanning document search, tool-using AI,
+          content creation, and digital dining. Explore each project to see how
+          its interface, API, data layer, and integrations fit together.
         </motion.p>
 
         <motion.div
@@ -207,37 +168,7 @@ function ProjectsHero({
           className="mt-10 flex flex-wrap items-center gap-3"
         >
           <StatChip label="Total" value={counts.total} accent="--color-brand-orange" />
-          <StatChip label="At work" value={counts.day} accent="--color-brand-indigo" />
-          <StatChip label="After hours" value={counts.side} accent="--color-brand-lime" />
-          <StatChip label="Years span" value={counts.years} accent="--color-brand-cyan" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          className="mt-8 flex flex-wrap items-center gap-2"
-        >
-          <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <Filter size={11} /> filter
-          </span>
-          {filters.map((f) => {
-            const isActive = active === f.key;
-            return (
-              <button
-                key={f.key}
-                onClick={() => setActive(f.key)}
-                className={cn(
-                  "relative rounded-full border px-4 py-1.5 text-xs font-medium transition-colors",
-                  isActive
-                    ? "border-foreground bg-foreground text-background"
-                    : "border-foreground/10 bg-white text-foreground/70 hover:border-foreground/30 hover:text-foreground"
-                )}
-              >
-                {f.label}
-              </button>
-            );
-          })}
+          <StatChip label="Technologies" value={counts.technologies} accent="--color-brand-cyan" />
         </motion.div>
         </div>
 
@@ -274,8 +205,7 @@ function HeroFloatingCard({
 
 function HeroCollage() {
   const featured = projects.find((p) => p.featured) ?? projects[0];
-  const sideCount = projects.filter((p) => p.role === "Side project").length;
-  const sideProjects = projects.filter((p) => p.role === "Side project");
+  const sideProjects = projects.slice(1);
 
   return (
     <div className="relative hidden h-[520px] w-full lg:block">
@@ -322,13 +252,13 @@ function HeroCollage() {
         <div className="relative p-4 text-white">
           <Sparkles className="inset-0" count={6} colors={["#ffffff"]} />
           <div className="text-[10px] uppercase tracking-[0.18em] opacity-80">
-            Page loads dropped
+            Active projects
           </div>
           <div className="mt-1 font-display text-5xl italic leading-none">
-            80%
+            04
           </div>
           <div className="mt-2 text-[11px] opacity-85">
-            after RTK Query + smarter cache
+            across interfaces, APIs, and data
           </div>
         </div>
       </HeroFloatingCard>
@@ -340,23 +270,23 @@ function HeroCollage() {
       >
         <div className="p-4">
           <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-            Shipping since
+            Current focus
           </div>
           <div className="mt-1 flex items-baseline gap-2">
-            <span className="font-display text-5xl italic leading-none gradient-text-warm">
-              2022
+            <span className="font-display text-3xl italic leading-none gradient-text-warm">
+              AI + apps
             </span>
           </div>
           <div className="mt-3 flex items-center gap-1.5">
-            {[2022, 2023, 2024, 2025].map((y) => (
+            {[1, 2, 3, 4].map((item) => (
               <span
-                key={y}
+                key={item}
                 className="h-1 flex-1 rounded-full bg-[--color-brand-orange]/30 first:bg-[--color-brand-orange] [&:nth-child(2)]:bg-[--color-brand-orange]/80 [&:nth-child(3)]:bg-[--color-brand-orange]/60"
               />
             ))}
           </div>
           <div className="mt-2 font-mono text-[9px] uppercase tracking-wider text-muted-foreground">
-            4 years · still shipping
+            search · research · dining
           </div>
         </div>
       </HeroFloatingCard>
@@ -368,9 +298,9 @@ function HeroCollage() {
       >
         <div className="p-4">
           <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.18em] text-muted-foreground">
-            <span>Built after hours</span>
+            <span>Active projects</span>
             <span className="rounded-full bg-[--color-brand-lime]/15 px-1.5 py-0.5 font-mono text-[9px] text-[#3f6212]">
-              {sideCount}
+              {projects.length}
             </span>
           </div>
           <ul className="mt-3 space-y-1.5">
@@ -556,7 +486,7 @@ function CompactCard({ project, index }: { project: Project; index: number }) {
 
   return (
     <CardShell project={project}>
-      <div className="relative flex h-full flex-col p-5 md:p-6">
+      <div className="relative flex flex-col p-5 md:p-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <span className="inline-flex items-center gap-2 rounded-full bg-foreground/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
@@ -593,10 +523,32 @@ function CompactCard({ project, index }: { project: Project; index: number }) {
           </div>
         </div>
 
-        {/* Mini preview that fills available space */}
-        <div className="relative mt-4 min-h-[120px] flex-1 overflow-hidden rounded-2xl border border-foreground/[0.06] bg-[--color-muted]/30">
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          {project.description}
+        </p>
+
+        {/* Project visual */}
+        <div className="relative mt-4 h-[140px] overflow-hidden rounded-2xl border border-foreground/[0.06] bg-[--color-muted]/30">
           <CompactPreview project={project} />
         </div>
+
+        <details className="group/details mt-4 rounded-xl border border-foreground/10 bg-foreground/[0.02] px-3.5 py-3">
+          <summary className="cursor-pointer list-none text-xs font-semibold text-foreground/75 marker:hidden">
+            <span className="flex items-center justify-between gap-3">
+              Tech stack details
+              <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-open/details:hidden">View</span>
+              <span className="hidden font-mono text-[10px] uppercase tracking-wider text-muted-foreground group-open/details:inline">Close</span>
+            </span>
+          </summary>
+          <ul className="mt-3 space-y-3 border-t border-foreground/[0.08] pt-3">
+            {project.techDetails.map((item) => (
+              <li key={item.name}>
+                <p className="text-xs font-semibold text-foreground">{item.name}</p>
+                <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{item.detail}</p>
+              </li>
+            ))}
+          </ul>
+        </details>
 
         {/* Footer */}
         <div className="mt-4 flex items-end justify-between gap-3">
@@ -636,20 +588,7 @@ function CompactCard({ project, index }: { project: Project; index: number }) {
 }
 
 function CompactPreview({ project }: { project: Project }) {
-  switch (project.slug) {
-    case "agentic-workflow-editor":
-      return <MiniWorkflow accent={project.accent} />;
-    case "fluid-chatbot-platform":
-      return <MiniChatbot accent={project.accent} />;
-    case "interactive-avatar":
-      return <MiniAvatar accent={project.accent} />;
-    case "gen-ai-chat":
-      return <MiniGenAI accent={project.accent} />;
-    case "fluid-integrate-store":
-      return <MiniIntegrations accent={project.accent} />;
-    default:
-      return <MiniGeneric project={project} />;
-  }
+  return <MiniGeneric project={project} />;
 }
 
 function MiniWorkflow({ accent }: { accent: string }) {
@@ -941,7 +880,7 @@ function CardShell({
 }) {
   return (
     <div
-      className="relative h-full min-h-[280px] overflow-hidden rounded-3xl border border-foreground/[0.08] bg-white transition-shadow duration-300 hover:shadow-[0_28px_64px_-20px_rgba(28,24,21,0.22)]"
+      className="relative min-h-[280px] overflow-hidden rounded-3xl border border-foreground/[0.08] bg-white transition-shadow duration-300 hover:shadow-[0_28px_64px_-20px_rgba(28,24,21,0.22)]"
       style={{ boxShadow: `inset 0 -3px 0 ${project.accent}` }}
     >
       {/* Top color strip */}
@@ -1220,4 +1159,3 @@ function GenericPreview({ project }: { project: Project }) {
     </div>
   );
 }
-
