@@ -93,6 +93,58 @@ export const projects: Project[] = [
     size: "sm",
     accent: "#f472b6",
   },
+  {
+    slug: "rag-knowledge-assistant",
+    title: "RAG Knowledge Assistant",
+    tagline: "Ask questions across your own documents",
+    description:
+      "A full-stack knowledge base that accepts pasted text and document uploads, extracts and chunks content, stores Gemini embeddings in Supabase, retrieves relevant passages, and streams grounded answers. Built with a Next.js UI and a separate Express API.",
+    year: 2026,
+    role: "Side project",
+    stack: ["Next.js", "TypeScript", "Express", "Supabase", "Gemini", "pgvector"],
+    repo: "https://github.com/kushwahaTarun/rag-knowledge-assistant",
+    size: "md",
+    accent: "#38bdf8",
+  },
+  {
+    slug: "tool-calling-research-agent",
+    title: "Tool-Calling Research Agent",
+    tagline: "An agent that searches, reads, and reports",
+    description:
+      "A streaming research assistant that uses OpenRouter tool calls to search the web with Tavily and extract source content. Includes a Next.js chat interface, Express API, and Supabase conversation storage.",
+    year: 2026,
+    role: "Side project",
+    stack: ["Next.js", "Express", "OpenRouter", "Tavily", "Supabase"],
+    repo: "https://github.com/kushwahaTarun/Tool-Calling-Research-Agent",
+    size: "md",
+    accent: "#a78bfa",
+  },
+  {
+    slug: "content-repurposing-tool",
+    title: "Content Repurposing Tool",
+    tagline: "Turn source material into short-form scripts",
+    description:
+      "A small AI application with a Next.js interface and Express endpoint that sends user-provided text to Gemini and returns hooks, reel scripts, and captions.",
+    year: 2026,
+    role: "Side project",
+    stack: ["Next.js", "Express", "Gemini", "React", "Tailwind CSS"],
+    repo: "https://github.com/kushwahaTarun/Content-Repurposing-Tool",
+    size: "md",
+    accent: "#fb7185",
+  },
+  {
+    slug: "qr-digital-dining",
+    title: "QR Digital Dining",
+    tagline: "A guest ordering flow backed by a restaurant API",
+    description:
+      "A multi-app QR dining platform spanning a customer interface, staff dashboard, and NestJS API. Implemented restaurant and menu data, signed table sessions, staff authentication, PostgreSQL persistence with Prisma, and backend order endpoints.",
+    year: 2026,
+    role: "Side project",
+    stack: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "JWT"],
+    repo: "https://github.com/kushwahaTarun/QR-Ordering-Interface-Backend",
+    size: "md",
+    accent: "#34d399",
+  },
 ];
 
 export const featuredProjects = projects.filter((p) => p.featured);
