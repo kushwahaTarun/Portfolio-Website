@@ -16,7 +16,7 @@ import { siteConfig } from "@/lib/site";
 import { FaqAccordion } from "./FaqAccordion";
 
 const servicesTitle = `Services — Work with ${siteConfig.name}`;
-const servicesDescription = `Freelance full-stack engagements with ${siteConfig.name} — Next.js front-ends, Node APIs, MongoDB / Firebase, Docker deploys. Audits, MVPs, and pair consulting.`;
+const servicesDescription = `Freelance web development from Kanpur, India. ${siteConfig.name} builds responsive websites and full-stack apps with Next.js, Node.js, MongoDB, and Firebase.`;
 
 export const metadata: Metadata = {
   title: "Services — Work with me",
@@ -37,7 +37,12 @@ const servicesJsonLd = {
   name: `${siteConfig.name} — Freelance Engineering`,
   url: `${siteConfig.url}/services`,
   description: servicesDescription,
-  areaServed: "Worldwide",
+  areaServed: [
+    { "@type": "City", name: "Kanpur" },
+    { "@type": "AdministrativeArea", name: "Uttar Pradesh" },
+    { "@type": "Country", name: "India" },
+    { "@type": "Place", name: "Remote clients worldwide" },
+  ],
   provider: {
     "@type": "Person",
     name: siteConfig.name,
@@ -244,6 +249,14 @@ export default function ServicesPage() {
           <TrustStat value="85%" label="API calls cut in last audit" />
           <TrustStat value="80%" label="Page-load improvement" />
         </div>
+      </Section>
+
+      <Section className="pb-4 md:pb-8">
+        <p className="mx-auto max-w-3xl text-center text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
+          Based in Kanpur, India, I build websites and full-stack web
+          applications for local businesses, founders, and product teams. We
+          can work remotely across Uttar Pradesh, India, and beyond.
+        </p>
       </Section>
 
       {/* Services */}
