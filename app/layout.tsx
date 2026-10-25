@@ -10,6 +10,7 @@ import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { CommandPalette } from "@/components/shared/CommandPalette";
 import { VoiceAssistant } from "@/components/shared/VoiceAssistant";
 import { siteConfig } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const sans = Inter({
   variable: "--font-sans",
@@ -107,6 +108,7 @@ export default function RootLayout({
           <Footer />
           <VoiceAssistant />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
