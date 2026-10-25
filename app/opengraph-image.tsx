@@ -80,7 +80,7 @@ export default async function OG() {
           }}
         >
           <div style={{ display: "flex" }}>{siteConfig.role}</div>
-          <div style={{ display: "flex" }}>tarunkushwaha.dev</div>
+          <div style={{ display: "flex" }}>tarunkushwaha.in</div>
         </div>
       </div>
     ),
