@@ -10,6 +10,7 @@ import { ScrollProgress } from "@/components/shared/ScrollProgress";
 import { CommandPalette } from "@/components/shared/CommandPalette";
 import { VoiceAssistant } from "@/components/shared/VoiceAssistant";
 import { siteConfig } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const sans = Inter({
   variable: "--font-sans",
@@ -40,7 +41,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.role}`,
+    default: `${siteConfig.name} | Web Developer in Kanpur, India`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
@@ -52,6 +53,8 @@ export const metadata: Metadata = {
     "Senior React Developer",
     "Next.js Engineer",
     "Frontend Engineer",
+    "Web Developer in Kanpur",
+    "Freelance Web Developer Kanpur",
     "MERN Stack",
     "TypeScript",
     "Portfolio",
@@ -62,9 +65,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: `${siteConfig.name} — ${siteConfig.role}`,
+    title: `${siteConfig.name} | Web Developer in Kanpur, India`,
     description: siteConfig.description,
     siteName: siteConfig.name,
+    images: [{ url: "/opengraph-image", alt: `${siteConfig.name} — Web Developer in Kanpur` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | Web Developer in Kanpur, India`,
+    description: siteConfig.description,
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,
@@ -98,6 +108,7 @@ export default function RootLayout({
           <Footer />
           <VoiceAssistant />
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
