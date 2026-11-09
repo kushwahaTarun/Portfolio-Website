@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tarun Kushwaha — Portfolio
 
-## Getting Started
+Personal portfolio built with Next.js, React, and TypeScript.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configure these in your local `.env.local` and in the production hosting environment. Never commit real secrets.
 
-## Learn More
+| Variable | Required | Purpose |
+| --- | --- | --- |
+| `RESEND_API_KEY` | Yes for contact form delivery | Resend API key used to send contact-form notifications |
+| `CONTACT_TO_EMAIL` | No | Destination inbox; defaults to the email in `lib/site.ts` |
+| `CONTACT_FROM_EMAIL` | Recommended | Verified sender address/domain configured in Resend |
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes for production rate limiting | Supabase project URL |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes for production rate limiting | Server-only Supabase service-role key; never expose it with a `NEXT_PUBLIC_` prefix |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Only if browser-side Supabase features are used | Supabase anon key |
 
-To learn more about Next.js, take a look at the following resources:
+The contact endpoint deliberately returns HTTP 503 when `RESEND_API_KEY` is missing. It does not report a successful send or log submitted contact details in that configuration.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Production checklist
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Set the environment variables above in the production deployment.
+2. Verify the Resend sender domain/address and send a real test message through the contact form.
+3. Deploy the Supabase `check_rate_limit` RPC expected by `lib/rate-limit.ts`. Confirm it is callable using the service-role key and that the rate-limit table/function permissions are restricted appropriately.
+4. Test the contact form with valid input, invalid input, the honeypot field, and repeated submissions.
+5. Check `/robots.txt`, `/sitemap.xml`, canonical URLs, and Open Graph previews on the deployed domain.
+6. Run `npm run lint`, `npm run typecheck`, and `npm run build` before merging.
 
-## Deploy on Vercel
+## Scripts
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `npm run dev` — local development
+- `npm run lint` — lint checks
+- `npm run typecheck` — TypeScript checks
+- `npm run build` — production build
+- `npm run start` — run the production server

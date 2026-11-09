@@ -77,10 +77,10 @@ export function Hero() {
               transition={{ delay: 0.9, duration: 0.6 }}
               className="mt-10 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
             >
-              Team Lead &amp; Senior React / Next.js engineer based in{" "}
-              <HighlightWord>Kanpur, India</HighlightWord>. 4 years shipping
-              production React at Fluid AI. Open to full-time roles and
-              freelance engagements — say hi if you&apos;re hiring or building.
+              Senior React / Next.js engineer and team lead based in{" "}
+              <HighlightWord>Kanpur, India</HighlightWord>. I build reliable
+              web experiences and full-stack products, and I&apos;m open to
+              remote opportunities and carefully scoped freelance projects.
             </motion.p>
 
             <motion.div
@@ -201,11 +201,11 @@ export function Hero() {
               <div className="relative p-4 text-white">
                 <Sparkles className="inset-0" count={3} colors={["#ffffff"]} />
                 <div className="text-[10px] uppercase tracking-[0.18em] opacity-80">
-                  Years writing React
+                  Focus
                 </div>
-                <div className="mt-1 font-display text-5xl italic">4+</div>
+                <div className="mt-1 font-display text-3xl italic">Build well.</div>
                 <div className="mt-1 text-[11px] opacity-80">
-                  &amp; still excited about every release
+                  Thoughtful UI. Reliable products.
                 </div>
               </div>
             </FloatingCard>
