@@ -121,7 +121,6 @@ const services: Service[] = [
       "60-min Loom walkthrough you can share with your team",
       "Two weeks of async Q&A after delivery",
     ],
-    proof: "Last in-house audit cut API calls by 85% and page loads by 80%.",
   },
   {
     slug: "build",
@@ -139,8 +138,6 @@ const services: Service[] = [
       "Dockerized and deployed on Vercel, your cloud, or on-prem",
       "CI/CD pipeline + handoff docs + 30-min walkthrough",
     ],
-    proof:
-      "Shipped multi-tenant SaaS end-to-end to 50+ enterprise clients at Fluid AI — including the on-prem version.",
   },
   {
     slug: "consulting",
@@ -173,7 +170,7 @@ const notAFit = [
   "WordPress, Shopify themes, or pure design work",
   "You need 9-to-5 live presence in your Slack",
   "Brief is \"make it look like X\" with no problem definition",
-  "Anything that conflicts with my day job at Fluid AI (no competing AI workspace platforms)",
+  "Work that conflicts with my availability or applicable employment and confidentiality obligations",
 ];
 
 const process = [
@@ -218,11 +215,10 @@ export default function ServicesPage() {
         underlineWidth="58%"
         description={
           <p>
-            I freelance on top of my Team Lead role at Fluid AI — fixed-scope
-            full-stack engagements for founders and small product teams.
-            Next.js front-ends, Node / Mongo / Firebase back-ends, Docker
-            and on-prem deploys when you need them. Audits, MVPs, and pair
-            consulting. Async-first, evenings &amp; weekends, ships fast.
+            I take on carefully scoped web development projects for founders,
+            local businesses, and product teams. From Next.js websites and
+            React interfaces to Node.js APIs, database integrations, and
+            deployment, I can help take a defined idea from plan to launch.
           </p>
         }
       >
@@ -240,16 +236,6 @@ export default function ServicesPage() {
           See engagement types
         </Link>
       </PageHero>
-
-      {/* Trust strip */}
-      <Section className="py-12 md:py-16">
-        <div className="grid gap-3 rounded-3xl border border-foreground/[0.08] bg-white paper p-6 sm:grid-cols-2 md:grid-cols-4 md:p-8">
-          <TrustStat value="4+" label="Years writing React" />
-          <TrustStat value="50+" label="Enterprise tenants shipped" />
-          <TrustStat value="85%" label="API calls cut in last audit" />
-          <TrustStat value="80%" label="Page-load improvement" />
-        </div>
-      </Section>
 
       <Section className="pb-4 md:pb-8">
         <p className="mx-auto max-w-3xl text-center text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
@@ -344,19 +330,6 @@ export default function ServicesPage() {
 
       <Contact />
     </>
-  );
-}
-
-function TrustStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="flex items-baseline gap-3 md:flex-col md:items-start md:gap-1">
-      <span className="font-display text-3xl italic leading-none text-foreground md:text-4xl">
-        {value}
-      </span>
-      <span className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground md:text-xs">
-        {label}
-      </span>
-    </div>
   );
 }
 

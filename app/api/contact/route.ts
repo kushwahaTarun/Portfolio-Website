@@ -49,9 +49,11 @@ export async function POST(request: Request) {
   const from = process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>";
 
   if (!apiKey) {
-    console.warn("[contact] RESEND_API_KEY not set — message logged only.");
-    console.info("[contact] payload:", { name, email, subject, message });
-    return NextResponse.json({ ok: true, dev: true });
+    console.error("[contact] RESEND_API_KEY is not configured.");
+    return NextResponse.json(
+      { error: "Contact form is temporarily unavailable. Please email me directly." },
+      { status: 503 }
+    );
   }
 
   try {
