@@ -27,7 +27,7 @@ const faqs: Faq[] = [
   {
     category: "Logistics",
     q: "Evenings and weekends?",
-    a: "Yes — that's exactly when freelance happens. My day job at Fluid AI runs business hours IST; freelance fills evenings and weekends with no conflict.",
+    a: "I consider projects based on my current availability and agree on a realistic schedule before committing. I only take on work that complies with my employment and confidentiality obligations.",
   },
   {
     category: "Process",
