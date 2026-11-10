@@ -22,7 +22,7 @@ export const projects: Project[] = [
     description:
       "A document question-answering app that accepts pasted text and uploads, extracts and chunks content, stores embeddings, retrieves relevant passages, and streams grounded answers through a separate API.",
     year: 2026,
-    role: "Active project",
+    role: "Project overview",
     stack: ["Next.js", "TypeScript", "Express", "Supabase", "Gemini", "pgvector"],
     techDetails: [
       { name: "Next.js + TypeScript", detail: "App Router interface for document management and streamed chat responses." },
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     description:
       "A streaming research assistant that calls web-search and page-extraction tools, then returns findings in a chat interface. The app includes a separate API and persists conversations and messages.",
     year: 2026,
-    role: "Active project",
+    role: "Project overview",
     stack: ["Next.js", "TypeScript", "Express", "OpenRouter", "Tavily", "Supabase"],
     techDetails: [
       { name: "Next.js + TypeScript", detail: "Chat interface consumes server-sent events and displays agent progress." },
@@ -64,7 +64,7 @@ export const projects: Project[] = [
     description:
       "An AI application that takes user-provided source text and generates hooks, short-form video scripts, and captions through a Next.js interface and an Express API.",
     year: 2026,
-    role: "Active project",
+    role: "Project overview",
     stack: ["Next.js", "React", "TypeScript", "Express", "Gemini", "Tailwind CSS"],
     techDetails: [
       { name: "Next.js + React", detail: "Responsive interface for entering source material and reviewing generated content." },
@@ -84,7 +84,7 @@ export const projects: Project[] = [
     description:
       "A multi-app QR dining project spanning a customer interface, staff dashboard, and NestJS API. The backend models restaurants, menus, dining sessions, and orders, with signed table access and staff authentication.",
     year: 2026,
-    role: "Active project",
+    role: "Project overview",
     stack: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "JWT"],
     techDetails: [
       { name: "Next.js", detail: "Separate customer and staff-facing applications." },

@@ -10,17 +10,14 @@ import { siteConfig } from "@/lib/site";
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${siteConfig.url}/#person`,
   name: siteConfig.name,
   url: siteConfig.url,
   image: `${siteConfig.url}/images/tarun_avatar.png`,
   jobTitle: siteConfig.role,
   email: `mailto:${siteConfig.email}`,
-  telephone: siteConfig.phone,
   description: siteConfig.description,
-  worksFor: {
-    "@type": "Organization",
-    name: "Fluid AI",
-  },
+  mainEntityOfPage: siteConfig.url,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Kanpur",
@@ -32,12 +29,25 @@ const personJsonLd = {
     "React.js",
     "Next.js",
     "TypeScript",
+    "JavaScript",
     "Node.js",
-    "MongoDB",
+    "Redux Toolkit",
+    "RTK Query",
     "Tailwind CSS",
     "Frontend Architecture",
-    "Performance Optimization",
+    "Web Performance",
+    "AI-powered applications",
   ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteConfig.url}/#website`,
+  name: `${siteConfig.name} — Portfolio`,
+  url: siteConfig.url,
+  inLanguage: "en",
+  publisher: { "@id": `${siteConfig.url}/#person` },
 };
 
 export default function HomePage() {
@@ -45,7 +55,7 @@ export default function HomePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify([personJsonLd, websiteJsonLd]) }}
       />
       <Hero />
       <Skills />
