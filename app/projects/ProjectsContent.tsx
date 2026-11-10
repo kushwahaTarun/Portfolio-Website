@@ -156,9 +156,7 @@ function ProjectsHero({
           transition={{ delay: 0.9, duration: 0.6 }}
           className="mt-10 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Four active applications spanning document search, tool-using AI,
-          content creation, and digital dining. Explore each project to see how
-          its interface, API, data layer, and integrations fit together.
+          Explore active projects by Tarun Kushwaha, a Senior React and Next.js developer in Kanpur, India. Each case study explains the architecture, technologies, and current implementation scope.
         </motion.p>
 
         <motion.div
@@ -457,6 +455,12 @@ function FeaturedCard({ project, index }: { project: Project; index: number }) {
                 Internal product
               </span>
             )}
+            <Link
+              href={`/projects/${project.slug}`}
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-foreground/20 px-5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
+            >
+              Case study <ArrowUpRight size={14} />
+            </Link>
             {project.repo && (
               <Link
                 href={project.repo}

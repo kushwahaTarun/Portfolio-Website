@@ -15,7 +15,7 @@ export function Projects() {
         eyebrow="Work"
         accent="orange"
         title="Stuff I've built lately."
-        description="A selection of my active applications, from AI-powered research and document search to digital dining."
+        description="A selection of active applications, from AI-powered research and document search to digital dining. Open a case study for the architecture and implementation details."
       />
 
       <div className="grid gap-5 md:grid-cols-6 md:auto-rows-[340px]">
@@ -30,10 +30,7 @@ export function Projects() {
           className="group inline-flex items-center gap-2 rounded-full border-2 border-foreground bg-transparent px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-foreground hover:text-background"
         >
           See everything
-          <ArrowUpRight
-            size={14}
-            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-          />
+          <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>
     </Section>
@@ -57,99 +54,43 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       className={cn(sizeClass, "group relative")}
     >
       <TiltCard className="h-full" max={6}>
-      <div
-        className="relative h-full min-h-[280px] overflow-hidden rounded-3xl border border-foreground/[0.08] bg-white transition-shadow duration-300 hover:shadow-[0_28px_64px_-20px_rgba(28,24,21,0.22)]"
-        style={{
-          boxShadow: `inset 0 -3px 0 ${project.accent}`,
-        }}
-      >
-        {/* Color strip on top */}
         <div
-          className="absolute inset-x-0 top-0 h-1.5"
-          style={{ background: project.accent }}
-        />
+          className="relative h-full min-h-[280px] overflow-hidden rounded-3xl border border-foreground/[0.08] bg-white transition-shadow duration-300 hover:shadow-[0_28px_64px_-20px_rgba(28,24,21,0.22)]"
+          style={{ boxShadow: `inset 0 -3px 0 ${project.accent}` }}
+        >
+          <div className="absolute inset-x-0 top-0 h-1.5" style={{ background: project.accent }} />
+          <div aria-hidden className="pointer-events-none absolute -right-20 -top-20 size-[280px] rounded-full opacity-[0.12] transition-opacity duration-500 group-hover:opacity-30" style={{ background: `radial-gradient(circle, ${project.accent}, transparent 60%)` }} />
+          <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" style={{ background: `radial-gradient(420px circle at 50% 0%, ${project.accent}22, transparent 60%)` }} />
 
-        {/* Decorative tint corner */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-20 -top-20 size-[280px] rounded-full opacity-[0.12] transition-opacity duration-500 group-hover:opacity-30"
-          style={{
-            background: `radial-gradient(circle, ${project.accent}, transparent 60%)`,
-          }}
-        />
-
-        {/* Cursor-aware glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{
-            background: `radial-gradient(420px circle at 50% 0%, ${project.accent}22, transparent 60%)`,
-          }}
-        />
-
-        <div className="relative flex h-full flex-col justify-between p-7 md:p-8">
-          <div>
-            <div className="mb-5 flex items-center justify-between">
-              <span className="inline-flex items-center gap-2 rounded-full bg-foreground/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-                <span
-                  className="size-1.5 rounded-full"
-                  style={{ background: project.accent }}
-                />
-                {project.year} · {project.role}
-              </span>
-            </div>
-            <h3 className="text-balance text-[1.75rem] font-semibold tracking-tight sm:text-3xl md:text-3xl">
-              {project.title}
-            </h3>
-            <p className="mt-1 font-display text-base italic text-muted-foreground md:text-lg">
-              {project.tagline}
-            </p>
-            <p className="mt-5 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground/90">
-              {project.description}
-            </p>
-          </div>
-
-          <div className="flex items-end justify-between gap-3">
-            <div className="flex flex-wrap gap-1.5">
-              {project.stack.slice(0, 4).map((s) => (
-                <span
-                  key={s}
-                  className="rounded-full border border-foreground/10 bg-foreground/[0.03] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-foreground/80"
-                >
-                  {s}
+          <div className="relative flex h-full flex-col justify-between p-7 md:p-8">
+            <div>
+              <div className="mb-5 flex items-center justify-between">
+                <span className="inline-flex items-center gap-2 rounded-full bg-foreground/[0.04] px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="size-1.5 rounded-full" style={{ background: project.accent }} />
+                  {project.year} · {project.role}
                 </span>
-              ))}
+              </div>
+              <h3 className="text-balance text-[1.75rem] font-semibold tracking-tight sm:text-3xl md:text-3xl">{project.title}</h3>
+              <p className="mt-1 font-display text-base italic text-muted-foreground md:text-lg">{project.tagline}</p>
+              <p className="mt-5 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground/90">{project.description}</p>
             </div>
-            <Link href="/projects" className="shrink-0 text-xs font-medium text-foreground/65 underline decoration-foreground/25 underline-offset-4 hover:text-foreground">
-              Stack details
-            </Link>
-            <div className="flex shrink-0 gap-1.5">
-              {project.repo && (
-                <Link
-                  href={project.repo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.title} repo`}
-                  className="grid size-9 place-items-center rounded-full border border-foreground/10 bg-white text-muted-foreground transition-colors hover:bg-foreground hover:text-background"
-                >
-                  <Github size={13} />
-                </Link>
-              )}
-              {project.href && (
-                <Link
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${project.title} live`}
-                  className="grid size-9 place-items-center rounded-full border border-foreground/10 bg-white text-muted-foreground transition-colors hover:bg-foreground hover:text-background"
-                >
-                  <ExternalLink size={13} />
-                </Link>
-              )}
+
+            <div className="flex items-end justify-between gap-3">
+              <div className="flex flex-wrap gap-1.5">
+                {project.stack.slice(0, 4).map((technology) => (
+                  <span key={technology} className="rounded-full border border-foreground/10 bg-foreground/[0.03] px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-foreground/80">{technology}</span>
+                ))}
+              </div>
+              <Link href={`/projects/${project.slug}`} className="shrink-0 text-xs font-medium text-foreground/65 underline decoration-foreground/25 underline-offset-4 hover:text-foreground">
+                Case study
+              </Link>
+              <div className="flex shrink-0 gap-1.5">
+                {project.repo && <Link href={project.repo} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} repo`} className="grid size-9 place-items-center rounded-full border border-foreground/10 bg-white text-muted-foreground transition-colors hover:bg-foreground hover:text-background"><Github size={13} /></Link>}
+                {project.href && <Link href={project.href} target="_blank" rel="noopener noreferrer" aria-label={`${project.title} live`} className="grid size-9 place-items-center rounded-full border border-foreground/10 bg-white text-muted-foreground transition-colors hover:bg-foreground hover:text-background"><ExternalLink size={13} /></Link>}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </TiltCard>
     </motion.div>
   );
