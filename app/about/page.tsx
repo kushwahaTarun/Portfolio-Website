@@ -7,7 +7,8 @@ import { Stack } from "@/components/home/Stack";
 import { Contact } from "@/components/home/Contact";
 
 const aboutTitle = `About — ${siteConfig.name}`;
-const aboutDescription = `${siteConfig.name} is a Team Lead and Senior React / Next.js engineer based in Kanpur, India. 4+ years shipping production React at Fluid AI. Principles, off-hours, and how I think about the work.`;
+const aboutDescription =
+  "Meet Tarun Kushwaha, a Senior React and Next.js developer and team lead based in Kanpur, India. Learn about his engineering principles, experience, and approach to building reliable web products.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -20,23 +21,28 @@ export const metadata: Metadata = {
     description: aboutDescription,
     siteName: siteConfig.name,
   },
+  twitter: {
+    card: "summary_large_image",
+    title: aboutTitle,
+    description: aboutDescription,
+    images: [siteConfig.ogImage],
+  },
 };
 
 export default function AboutPage() {
-  const totalYears = new Date().getFullYear() - 2022;
   return (
     <>
       <PageHero
         eyebrow="About"
-        prefix="A frontend dev who got"
+        prefix="A frontend developer who stays"
         highlight="curious."
         underlineWidth="62%"
         description={
           <p>
-            I&apos;m Tarun. I live in Kanpur, India, and I&apos;ve been writing
-            React professionally for {totalYears}+ years — currently at Fluid AI,
-            where I work on an AI workspace product. On the weekends I&apos;m
-            usually playing with whatever new AI SDK just came out.
+            I&apos;m Tarun, a Senior React and Next.js developer and team lead
+            based in Kanpur, India. I build thoughtful user interfaces and
+            reliable web products, and enjoy working across frontend
+            architecture, performance, and AI-powered experiences.
           </p>
         }
       />
