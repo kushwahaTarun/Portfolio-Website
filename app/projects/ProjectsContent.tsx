@@ -156,7 +156,7 @@ function ProjectsHero({
           transition={{ delay: 0.9, duration: 0.6 }}
           className="mt-10 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground md:text-lg"
         >
-          Explore active projects by Tarun Kushwaha, a Senior React and Next.js developer in Kanpur, India. Each case study explains the architecture, technologies, and current implementation scope.
+          These project write-ups cover document search, tool-using AI, content creation, and digital dining. They explain the architecture, stack, and implementation scope; they do not imply that each application is publicly deployed or has a live demo.
         </motion.p>
 
         <motion.div
