@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "Tarun Kushwaha",
   role: "Senior React & Next.js Developer",
   tagline:
-    "Web developer in Kanpur building responsive websites and full-stack apps with React, Next.js, and Node.js.",
+    "Senior React and Next.js developer in Kanpur, India, building responsive websites, web applications, and full-stack products for teams in India and remote markets.",
   description:
-    "Tarun Kushwaha is a web developer in Kanpur, India, building responsive websites and full-stack apps with React, Next.js, and Node.js. Available for freelance projects.",
+    "Tarun Kushwaha is a Senior React and Next.js developer and team lead based in Kanpur, India. He builds responsive websites, custom web applications, and full-stack products using React, Next.js, TypeScript, Node.js, and modern web technologies. Open to suitable remote roles and carefully scoped freelance projects.",
   url: "https://tarunkushwaha.in",
   ogImage: "/opengraph-image",
   email: "kushwahatarun9@gmail.com",

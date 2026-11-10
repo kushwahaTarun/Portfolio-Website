@@ -41,24 +41,13 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} | Web Developer in Kanpur, India`,
+    default: `${siteConfig.name} | Senior React & Next.js Developer in Kanpur`,
     template: `%s — ${siteConfig.name}`,
   },
   description: siteConfig.description,
   alternates: {
     canonical: "/",
   },
-  keywords: [
-    "Tarun Kushwaha",
-    "Senior React Developer",
-    "Next.js Engineer",
-    "Frontend Engineer",
-    "Web Developer in Kanpur",
-    "Freelance Web Developer Kanpur",
-    "MERN Stack",
-    "TypeScript",
-    "Portfolio",
-  ],
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   openGraph: {
