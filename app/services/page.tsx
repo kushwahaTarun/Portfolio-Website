@@ -16,7 +16,7 @@ import { siteConfig } from "@/lib/site";
 import { FaqAccordion } from "./FaqAccordion";
 
 const servicesTitle = `Services — Work with ${siteConfig.name}`;
-const servicesDescription = `Freelance web development from Kanpur, India. ${siteConfig.name} builds responsive websites and full-stack apps with Next.js, Node.js, MongoDB, and Firebase.`;
+const servicesDescription = `React and Next.js web development from Kanpur, India. ${siteConfig.name} builds responsive websites, custom web applications, TypeScript interfaces, and Node.js API integrations for product teams and businesses.`;
 
 export const metadata: Metadata = {
   title: "Services — Work with me",
@@ -239,9 +239,7 @@ export default function ServicesPage() {
 
       <Section className="pb-4 md:pb-8">
         <p className="mx-auto max-w-3xl text-center text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-          Based in Kanpur, India, I build websites and full-stack web
-          applications for local businesses, founders, and product teams. We
-          can work remotely across Uttar Pradesh, India, and beyond.
+          Based in Kanpur, India, I build responsive business websites and custom web applications for founders and product teams. My work includes React and Next.js frontend development, TypeScript interfaces, Node.js APIs, integrations, and practical performance improvements. I can collaborate remotely across Uttar Pradesh, India, and beyond. <span className="mt-3 block">Explore <Link className="underline underline-offset-4" href="/web-developer-kanpur">web development in Kanpur</Link> or <Link className="underline underline-offset-4" href="/web-application-development">custom web application development</Link>.</span>
         </p>
       </Section>
 
