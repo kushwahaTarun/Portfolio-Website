@@ -40,6 +40,22 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/web-developer-kanpur"
+                  className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+                >
+                  Web developer in Kanpur
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/web-application-development"
+                  className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+                >
+                  Web application development
+                </Link>
+              </li>
             </ul>
           </div>
 
