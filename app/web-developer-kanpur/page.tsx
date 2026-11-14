@@ -131,6 +131,41 @@ export default function KanpurWebDeveloperPage() {
           </Link>
         </div>
       </Section>
+
+      <Section className="py-12 md:py-16">
+        <div className="mx-auto max-w-4xl">
+          <h2 className="text-3xl font-semibold tracking-tight">Examples of relevant engineering work</h2>
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            These case studies show the kinds of interfaces and application workflows
+            I work on. They include implementation context and the technologies used,
+            so you can judge whether my experience matches the problem you need to solve.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <Link href="/projects/rag-knowledge-assistant" className="rounded-2xl border border-foreground/10 bg-white p-6 transition-colors hover:border-foreground/30">
+              <h3 className="text-lg font-semibold">RAG Knowledge Assistant</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A document-based question-answering application with a Next.js interface,
+                an Express API, Gemini embeddings, and Supabase with pgvector.
+              </p>
+              <span className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Read case study</span>
+            </Link>
+            <Link href="/projects/qr-digital-dining" className="rounded-2xl border border-foreground/10 bg-white p-6 transition-colors hover:border-foreground/30">
+              <h3 className="text-lg font-semibold">QR Digital Dining</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A multi-app ordering experience covering customer and staff interfaces,
+                with a separate API for restaurant, menu, and order workflows.
+              </p>
+              <span className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Read case study</span>
+            </Link>
+          </div>
+          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            If you are comparing developers for a Kanpur business website or a custom
+            product, start with the project scope, intended users, required integrations,
+            and who will maintain the application after launch. I can help clarify those
+            decisions before implementation begins.
+          </p>
+        </div>
+      </Section>
       <Contact />
     </>
   );

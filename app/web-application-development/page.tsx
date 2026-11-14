@@ -81,15 +81,44 @@ export default function WebApplicationDevelopmentPage() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-3xl font-semibold tracking-tight">Examples of application architecture</h2>
           <p className="mt-4 leading-relaxed text-muted-foreground">
-            My case studies cover a retrieval-augmented generation knowledge
-            assistant, a tool-calling research agent, an AI content repurposing
-            application, and a QR-based digital dining system. Each write-up
-            explains its current scope, technology choices, and implementation
-            details without implying that every project is a publicly launched product.
+            The following case studies describe implemented application flows and
+            technical decisions. They also make clear where a project is an overview
+            or prototype rather than a publicly launched commercial product.
           </p>
-          <Link href="/projects" className="mt-6 inline-flex rounded-full border border-foreground/20 px-6 py-3 text-sm font-medium">
-            Read project case studies
-          </Link>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <Link href="/projects/rag-knowledge-assistant" className="rounded-2xl border border-foreground/10 bg-white p-6 transition-colors hover:border-foreground/30">
+              <h3 className="text-lg font-semibold">RAG Knowledge Assistant</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Document ingestion, chunking, embeddings, vector retrieval, and
+                streamed answers using Next.js, Express, Gemini, and Supabase.
+              </p>
+              <span className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Read case study</span>
+            </Link>
+            <Link href="/projects/tool-calling-research-agent" className="rounded-2xl border border-foreground/10 bg-white p-6 transition-colors hover:border-foreground/30">
+              <h3 className="text-lg font-semibold">Tool-Calling Research Agent</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A streaming research interface backed by an Express API, model tool
+                calls, web search, page extraction, and conversation persistence.
+              </p>
+              <span className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Read case study</span>
+            </Link>
+            <Link href="/projects/content-repurposing-tool" className="rounded-2xl border border-foreground/10 bg-white p-6 transition-colors hover:border-foreground/30">
+              <h3 className="text-lg font-semibold">Content Repurposing Tool</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                A Next.js interface and Express API that turn user-provided source
+                material into hooks, short-form scripts, and captions.
+              </p>
+              <span className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Read case study</span>
+            </Link>
+            <Link href="/projects/qr-digital-dining" className="rounded-2xl border border-foreground/10 bg-white p-6 transition-colors hover:border-foreground/30">
+              <h3 className="text-lg font-semibold">QR Digital Dining</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Customer and staff-facing applications with a NestJS API for restaurant
+                data, menus, dining sessions, and order endpoints.
+              </p>
+              <span className="mt-4 inline-block text-sm font-medium underline underline-offset-4">Read case study</span>
+            </Link>
+          </div>
         </div>
       </Section>
 
